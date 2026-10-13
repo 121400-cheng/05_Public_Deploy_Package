@@ -1,0 +1,19 @@
+[browser]
+gatherUsageStats = false
+
+[client]
+showErrorDetails = "none"
+toolbarMode = "viewer"
+
+[server]
+headless = true
+address = "0.0.0.0"
+showEmailPrompt = false
+enableStaticServing = false
+
+[theme]
+base = "light"
+primaryColor = "#1C4F80"
+backgroundColor = "#F7F9FB"
+secondaryBackgroundColor = "#E9EFF4"
+textColor = "#17314A"

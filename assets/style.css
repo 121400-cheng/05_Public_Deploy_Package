@@ -1,0 +1,8 @@
+.stApp {background:#F7F9FB;color:#17314A;}
+[data-testid="stSidebar"] {background:#E9EFF4;}
+h1,h2,h3 {color:#123B61;letter-spacing:0.01em;}
+[data-testid="stMetric"] {background:white;border:1px solid #D7E2EB;border-radius:8px;padding:14px;}
+.demo-banner {background:#123B61;color:white;padding:18px 24px;border-radius:8px;margin-bottom:18px;}
+.demo-banner h2 {color:white;margin:4px 0;}
+.demo-banner small {color:#D6E4F0;}
+.notice {background:#EDF4F8;border-left:4px solid #1C4F80;padding:12px 16px;margin:12px 0;}

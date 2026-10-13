@@ -1,0 +1,14 @@
+{
+  "case_id": "case_057",
+  "plan_signature": "8F0D2082C2C5D09E4F152C4E81291990417606A2075F046F72482B4ABC40E02B",
+  "official_result": {
+    "makespan": 49207,
+    "added_copy_bytes": 1962202,
+    "source": "OFFICIAL_EVAL2",
+    "cache_key": "D1F1417FA8BD19E1C9F25D077138E63C81DF540CD7A48092EBD9EBFA8B69F0D2"
+  },
+  "cache_hit": false,
+  "physical_eval": true,
+  "official_eval_seconds": 1.7174632996320724,
+  "label": "W3"
+}

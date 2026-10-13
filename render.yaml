@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: edge-scheduling-demo
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: DEMO_PUBLIC_MODE
+        value: "1"

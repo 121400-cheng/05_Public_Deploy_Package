@@ -1,0 +1,81 @@
+{
+  "data_version": "V1.7",
+  "verified_on": "2026-10-13",
+  "verification_kind": "静态数据完整性与指标复算；不是新增求解实验",
+  "record_count_definition": "CSV 为逐实例数据行数，JSON 为完整实例/方案对象数量",
+  "source_path_scope": "original_source 相对整理工作包；完整上游信息保留于内部 DATA_SNAPSHOT_MANIFEST 和结果审计",
+  "files": [
+    {
+      "public_file": "metrics/scheduling_results.csv",
+      "original_source": "07_结果核验/q1_图表来源数据.csv",
+      "verified_snapshot_source": "04_Demo/data_snapshot/metrics/q1.csv",
+      "sha256": "1AF3D4E70EC3EBF5299EF4F9943157E30F2E774BC104F7247EF1711B174EE2A3",
+      "purpose": "多核任务调度的逐实例指标",
+      "record_count": 100
+    },
+    {
+      "public_file": "metrics/movement_results.csv",
+      "original_source": "07_结果核验/q2_图表来源数据.csv",
+      "verified_snapshot_source": "04_Demo/data_snapshot/metrics/q2.csv",
+      "sha256": "849F8318E3922361EA392184A87239FDCC4627E1A94CF4C61B06E8486F6993C9",
+      "purpose": "数据搬运模块的逐实例指标",
+      "record_count": 100
+    },
+    {
+      "public_file": "scheduling/instance_017/input.json",
+      "original_source": "05_演示材料/案例数据副本/data/case_017.json",
+      "verified_snapshot_source": "04_Demo/data_snapshot/Q1/case_017/input.json",
+      "sha256": "282C5840D8E8581FB7827A6D4C996F90384BDFE566FFA665574721568B9DC85C",
+      "purpose": "依赖图节选",
+      "record_count": 1
+    },
+    {
+      "public_file": "scheduling/instance_017/baseline.json",
+      "original_source": "05_演示材料/案例数据副本/q1_final_batch/run_001/02_initial/case_017.json",
+      "verified_snapshot_source": "04_Demo/data_snapshot/Q1/case_017/baseline.json",
+      "sha256": "3F1BE5AEFD9FADE386F274A841719CB56BBB98FC117BD45E86598E51D7D40D76",
+      "purpose": "优化前方案",
+      "record_count": 1
+    },
+    {
+      "public_file": "scheduling/instance_017/optimized.json",
+      "original_source": "05_演示材料/案例数据副本/q1_final_batch/run_001/04_final_plans/case_017.json",
+      "verified_snapshot_source": "04_Demo/data_snapshot/Q1/case_017/optimized.json",
+      "sha256": "130AE25303A87ACA902A5CCE43D6D313D58FEF708DE2C561E79E41ECD5FA7680",
+      "purpose": "优化后方案",
+      "record_count": 1
+    },
+    {
+      "public_file": "movement/instance_057/input.json",
+      "original_source": "05_演示材料/案例数据副本/data/case_057.json",
+      "verified_snapshot_source": "04_Demo/data_snapshot/Q2/case_057/input.json",
+      "sha256": "89778038DB7DB919A13C5885AA555C8AE054A3F43845C73FE346B6123D12A525",
+      "purpose": "依赖图节选",
+      "record_count": 1
+    },
+    {
+      "public_file": "movement/instance_057/baseline.json",
+      "original_source": "05_演示材料/案例数据副本/q2_development/phase_b10_final/run_001/05_checkpoints/case_057/warmstart/W3_plan.json",
+      "verified_snapshot_source": "04_Demo/data_snapshot/Q2/case_057/baseline.json",
+      "sha256": "41CBB631B1BACA789350897F924BC6F9E4B82892AF6935B6D239FE0B9841FD4E",
+      "purpose": "优化前方案",
+      "record_count": 1
+    },
+    {
+      "public_file": "movement/instance_057/baseline_result.json",
+      "original_source": "05_演示材料/案例数据副本/q2_development/phase_b10_final/run_001/05_checkpoints/case_057/warmstart/W3_result.json",
+      "verified_snapshot_source": "04_Demo/data_snapshot/Q2/case_057/baseline_result.json",
+      "sha256": "2F12C04A45C396D4513071897623482FAB2C2E50D47A7C3D0A0C7AEC0F35F168",
+      "purpose": "初始指标交叉核对",
+      "record_count": 1
+    },
+    {
+      "public_file": "movement/instance_057/optimized.json",
+      "original_source": "05_演示材料/案例数据副本/q2_development/phase_b10_final/run_001/03_final_plans/case_057.json",
+      "verified_snapshot_source": "04_Demo/data_snapshot/Q2/case_057/optimized.json",
+      "sha256": "7FDAF5C7CE7058CD62FC0DA6DFBD0E0DE3B539A6D5C9AED84265763BA0828658",
+      "purpose": "优化后方案",
+      "record_count": 1
+    }
+  ]
+}
