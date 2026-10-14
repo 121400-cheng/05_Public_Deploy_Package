@@ -1,0 +1,16 @@
+{
+  "cores": 4,
+  "capacity_bytes": {
+    "L1": 16777216,
+    "UB": 16777216
+  },
+  "max_tensor_bytes": 4100000,
+  "rule": "next power of two >= 4 * largest logical tensor",
+  "bandwidth_proxy": 60,
+  "cross_core_wait_proxy": 1000,
+  "same_core_wait_proxy": 100,
+  "cross_core_copy_delay_proxy": 500,
+  "compute_divisor": 1024,
+  "real_hardware_measurement": false,
+  "note": "Separate abstract scenario, not original benchmark capacity"
+}

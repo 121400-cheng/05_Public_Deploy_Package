@@ -24,6 +24,8 @@ def home():
         cols[3].metric("平均 Makespan 降低" if key == "Q1" else "平均指标降低", f"{stat['mean_pct']:.4f}%")
     st.caption("统计结果基于当前已验证批量实例。平均改善率采用逐实例降低率的算术平均。")
     st.write("多核任务调度与数据搬运优化可映射到边缘视觉推理计算图的执行层。技术定位和验证范围详见数据说明。")
+    st.subheader("视觉网络计算图迁移证据")
+    st.write("批量实例验证与真实视觉计算图迁移：MobileNetV3-Small 展示串行拓扑，GoogLeNet 的真实 Inception 分支子图通过多核分配验证。结果采用抽象代价，详见视觉计算图迁移验证。")
     footer()
 
 
@@ -35,5 +37,6 @@ navigation = st.navigation([
     st.Page("pages/4_批量性能验证.py", title="批量性能验证"),
     st.Page("pages/5_核心算法架构.py", title="核心方法框架"),
     st.Page("pages/6_数据与复现说明.py", title="数据与复现说明"),
+    st.Page("pages/7_视觉计算图迁移验证.py", title="视觉计算图迁移验证"),
 ])
 navigation.run()

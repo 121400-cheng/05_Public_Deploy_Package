@@ -42,7 +42,7 @@ def display_instance(case_id: str) -> str:
 def manifest() -> dict:
     value = json.loads((PUBLIC_DATA / "DATA_MANIFEST.json").read_text(encoding="utf-8"))
     files = value["files"]
-    if len(files) != 9 or len({entry["public_file"] for entry in files}) != 9:
+    if len(files) != 10 or len({entry["public_file"] for entry in files}) != 10:
         raise ValueError("验证数据清单异常")
     for entry in files:
         path = (PUBLIC_DATA / entry["public_file"]).resolve()

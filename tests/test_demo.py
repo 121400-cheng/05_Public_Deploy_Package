@@ -28,7 +28,17 @@ def test_pair_data_and_public_projection():
         assert table["实例"].iloc[0] == "实例 001"
         assert "source_path" not in table.columns
         assert not re.search(r"Q[12]|case_|赛题|Eval[12]", table.to_string())
-    assert len(data.manifest()["files"]) == 9
+    assert len(data.manifest()["files"]) == 10
+
+
+def test_vision_snapshot():
+    from utils.vision_data import load
+    bundle = load()
+    assert bundle['graph']['profile']['compute_nodes'] == 157
+    assert bundle['result']['baseline_makespan'] == 246943
+    assert bundle['result']['optimized_makespan'] == 181471
+    assert bundle['result']['storage_migration_status'] == 'PENDING'
+    assert bundle['result']['core_task_counts']['Optimized'] == [157, 0, 0, 0]
 
 
 def test_original_tree_unavailable(monkeypatch):

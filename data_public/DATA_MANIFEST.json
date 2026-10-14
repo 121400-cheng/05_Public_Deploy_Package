@@ -1,5 +1,5 @@
 {
-  "data_version": "V1.7",
+  "data_version": "V3.0",
   "verified_on": "2026-10-13",
   "verification_kind": "静态数据完整性与指标复算；不是新增求解实验",
   "record_count_definition": "CSV 为逐实例数据行数，JSON 为完整实例/方案对象数量",
@@ -76,6 +76,14 @@
       "sha256": "7FDAF5C7CE7058CD62FC0DA6DFBD0E0DE3B539A6D5C9AED84265763BA0828658",
       "purpose": "优化后方案",
       "record_count": 1
+    },
+    {
+      "public_file": "vision/v30/demo.json",
+      "original_source": "06_视觉计算图迁移验证/05_results/v23/vision_demo_snapshot.json",
+      "verified_snapshot_source": "08_参赛交付包/07_复现与证据/V3_PUBLIC_VISUAL_SNAPSHOT.json",
+      "sha256": "C1D9201D2B88F6A36F9E9B605C187E3833324DCCF6D6DC5A8C8D5EAE43CC31ED",
+      "purpose": "真实视觉网络拓扑、分支子图与冻结调度结果；抽象代价",
+      "record_count": 12
     }
   ]
 }

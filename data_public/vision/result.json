@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "model": "MobileNetV3-Small",
+  "cores": 4,
+  "baseline_makespan": 246943,
+  "optimized_makespan": 181471,
+  "absolute_reduction": 65472,
+  "improvement_pct": 26.513000975933718,
+  "baseline_added_copy_bytes": 2308096,
+  "optimized_added_copy_bytes": 0,
+  "makespan_unit": "abstract evaluator cycles with proxy compute costs, not measured time",
+  "data_unit": "simulated extra copy bytes, not hardware traffic",
+  "baseline_eval_seconds": 0.02417439967393875,
+  "final_eval_seconds": 0.029913099948316813,
+  "teacher_seconds": 0.44586370000615716,
+  "teacher_evaluations": 15,
+  "teacher_iterations": 12,
+  "internal_feasible": true,
+  "official_readback": true,
+  "independent_evaluation": true,
+  "core_task_counts": {
+    "Baseline": [
+      157,
+      0,
+      0,
+      0
+    ],
+    "Optimized": [
+      157,
+      0,
+      0,
+      0
+    ]
+  },
+  "generated_at": "2026-10-13T08:04:25.342759+00:00",
+  "method": "Existing Teacher reference",
+  "overall_status": "PARTIAL PASS",
+  "storage_migration_status": "PENDING"
+}

@@ -1,0 +1,6875 @@
+{
+  "model": "MobileNetV3-Small",
+  "input_shape": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "profile": {
+    "fx_nodes": 159,
+    "compute_nodes": 157,
+    "dependency_edges": 173,
+    "tensor_count": 158,
+    "intermediate_tensor_count": 157,
+    "largest_intermediate_tensor_bytes": 903168,
+    "accumulated_intermediate_tensor_bytes": 17784128,
+    "parameter_count": 2542856,
+    "conv_nodes": 52,
+    "linear_nodes": 2,
+    "activation_pooling_nodes": 53,
+    "operator_distribution": {
+      "Conv2d": 52,
+      "BatchNorm2d": 34,
+      "Hardswish": 19,
+      "ReLU": 14,
+      "AdaptiveAvgPool2d": 10,
+      "Hardsigmoid": 9,
+      "mul": 9,
+      "add": 6,
+      "flatten": 1,
+      "Linear": 2,
+      "Dropout": 1
+    },
+    "other_nodes": 50
+  },
+  "nodes": [
+    {
+      "node_id": 0,
+      "node_name": "x",
+      "op_type": "placeholder",
+      "target": "x",
+      "module_type": "x",
+      "classification": "placeholder",
+      "input_shape": [],
+      "output_shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 150528,
+      "activation_bytes": 602112,
+      "predecessors": [],
+      "successors": [
+        "features_0_0"
+      ],
+      "proxy_compute_cost": null,
+      "normalized_compute_cost": null,
+      "proxy_rule": "Not a compute task"
+    },
+    {
+      "node_id": 1,
+      "node_name": "features_0_0",
+      "op_type": "call_module",
+      "target": "features.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          3,
+          224,
+          224
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        112,
+        112
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 432,
+      "static_data_bytes": 1728,
+      "activation_elements": 200704,
+      "activation_bytes": 802816,
+      "predecessors": [
+        "x"
+      ],
+      "successors": [
+        "features_0_1"
+      ],
+      "proxy_compute_cost": 5419008,
+      "normalized_compute_cost": 5292,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 2,
+      "node_name": "features_0_1",
+      "op_type": "call_module",
+      "target": "features.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          112,
+          112
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        112,
+        112
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 32,
+      "static_data_bytes": 264,
+      "activation_elements": 200704,
+      "activation_bytes": 802816,
+      "predecessors": [
+        "features_0_0"
+      ],
+      "successors": [
+        "features_0_2"
+      ],
+      "proxy_compute_cost": 200704,
+      "normalized_compute_cost": 196,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 3,
+      "node_name": "features_0_2",
+      "op_type": "call_module",
+      "target": "features.0.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          112,
+          112
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        112,
+        112
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 200704,
+      "activation_bytes": 802816,
+      "predecessors": [
+        "features_0_1"
+      ],
+      "successors": [
+        "features_1_block_0_0"
+      ],
+      "proxy_compute_cost": 200704,
+      "normalized_compute_cost": 196,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 4,
+      "node_name": "features_1_block_0_0",
+      "op_type": "call_module",
+      "target": "features.1.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          112,
+          112
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        56,
+        56
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 144,
+      "static_data_bytes": 576,
+      "activation_elements": 50176,
+      "activation_bytes": 200704,
+      "predecessors": [
+        "features_0_2"
+      ],
+      "successors": [
+        "features_1_block_0_1"
+      ],
+      "proxy_compute_cost": 451584,
+      "normalized_compute_cost": 441,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 5,
+      "node_name": "features_1_block_0_1",
+      "op_type": "call_module",
+      "target": "features.1.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          56,
+          56
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        56,
+        56
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 32,
+      "static_data_bytes": 264,
+      "activation_elements": 50176,
+      "activation_bytes": 200704,
+      "predecessors": [
+        "features_1_block_0_0"
+      ],
+      "successors": [
+        "features_1_block_0_2"
+      ],
+      "proxy_compute_cost": 50176,
+      "normalized_compute_cost": 49,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 6,
+      "node_name": "features_1_block_0_2",
+      "op_type": "call_module",
+      "target": "features.1.block.0.2",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          56,
+          56
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        56,
+        56
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 50176,
+      "activation_bytes": 200704,
+      "predecessors": [
+        "features_1_block_0_1"
+      ],
+      "successors": [
+        "features_1_block_1_avgpool",
+        "mul"
+      ],
+      "proxy_compute_cost": 50176,
+      "normalized_compute_cost": 49,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 7,
+      "node_name": "features_1_block_1_avgpool",
+      "op_type": "call_module",
+      "target": "features.1.block.1.avgpool",
+      "module_type": "AdaptiveAvgPool2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          56,
+          56
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 16,
+      "activation_bytes": 64,
+      "predecessors": [
+        "features_1_block_0_2"
+      ],
+      "successors": [
+        "features_1_block_1_fc1"
+      ],
+      "proxy_compute_cost": 50176,
+      "normalized_compute_cost": 49,
+      "proxy_rule": "Pooling input elements"
+    },
+    {
+      "node_id": 8,
+      "node_name": "features_1_block_1_fc1",
+      "op_type": "call_module",
+      "target": "features.1.block.1.fc1",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        8,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 136,
+      "static_data_bytes": 544,
+      "activation_elements": 8,
+      "activation_bytes": 32,
+      "predecessors": [
+        "features_1_block_1_avgpool"
+      ],
+      "successors": [
+        "features_1_block_1_activation"
+      ],
+      "proxy_compute_cost": 128,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 9,
+      "node_name": "features_1_block_1_activation",
+      "op_type": "call_module",
+      "target": "features.1.block.1.activation",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          8,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        8,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 8,
+      "activation_bytes": 32,
+      "predecessors": [
+        "features_1_block_1_fc1"
+      ],
+      "successors": [
+        "features_1_block_1_fc2"
+      ],
+      "proxy_compute_cost": 8,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 10,
+      "node_name": "features_1_block_1_fc2",
+      "op_type": "call_module",
+      "target": "features.1.block.1.fc2",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          8,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 144,
+      "static_data_bytes": 576,
+      "activation_elements": 16,
+      "activation_bytes": 64,
+      "predecessors": [
+        "features_1_block_1_activation"
+      ],
+      "successors": [
+        "features_1_block_1_scale_activation"
+      ],
+      "proxy_compute_cost": 128,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 11,
+      "node_name": "features_1_block_1_scale_activation",
+      "op_type": "call_module",
+      "target": "features.1.block.1.scale_activation",
+      "module_type": "Hardsigmoid",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 16,
+      "activation_bytes": 64,
+      "predecessors": [
+        "features_1_block_1_fc2"
+      ],
+      "successors": [
+        "mul"
+      ],
+      "proxy_compute_cost": 16,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 12,
+      "node_name": "mul",
+      "op_type": "call_function",
+      "target": "mul",
+      "module_type": "mul",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          1,
+          1
+        ],
+        [
+          1,
+          16,
+          56,
+          56
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        56,
+        56
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 50176,
+      "activation_bytes": 200704,
+      "predecessors": [
+        "features_1_block_1_scale_activation",
+        "features_1_block_0_2"
+      ],
+      "successors": [
+        "features_1_block_2_0"
+      ],
+      "proxy_compute_cost": 50176,
+      "normalized_compute_cost": 49,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 13,
+      "node_name": "features_1_block_2_0",
+      "op_type": "call_module",
+      "target": "features.1.block.2.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          56,
+          56
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        56,
+        56
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 256,
+      "static_data_bytes": 1024,
+      "activation_elements": 50176,
+      "activation_bytes": 200704,
+      "predecessors": [
+        "mul"
+      ],
+      "successors": [
+        "features_1_block_2_1"
+      ],
+      "proxy_compute_cost": 802816,
+      "normalized_compute_cost": 784,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 14,
+      "node_name": "features_1_block_2_1",
+      "op_type": "call_module",
+      "target": "features.1.block.2.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          56,
+          56
+        ]
+      ],
+      "output_shape": [
+        1,
+        16,
+        56,
+        56
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 32,
+      "static_data_bytes": 264,
+      "activation_elements": 50176,
+      "activation_bytes": 200704,
+      "predecessors": [
+        "features_1_block_2_0"
+      ],
+      "successors": [
+        "features_2_block_0_0"
+      ],
+      "proxy_compute_cost": 50176,
+      "normalized_compute_cost": 49,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 15,
+      "node_name": "features_2_block_0_0",
+      "op_type": "call_module",
+      "target": "features.2.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          16,
+          56,
+          56
+        ]
+      ],
+      "output_shape": [
+        1,
+        72,
+        56,
+        56
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 1152,
+      "static_data_bytes": 4608,
+      "activation_elements": 225792,
+      "activation_bytes": 903168,
+      "predecessors": [
+        "features_1_block_2_1"
+      ],
+      "successors": [
+        "features_2_block_0_1"
+      ],
+      "proxy_compute_cost": 3612672,
+      "normalized_compute_cost": 3528,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 16,
+      "node_name": "features_2_block_0_1",
+      "op_type": "call_module",
+      "target": "features.2.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          72,
+          56,
+          56
+        ]
+      ],
+      "output_shape": [
+        1,
+        72,
+        56,
+        56
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 144,
+      "static_data_bytes": 1160,
+      "activation_elements": 225792,
+      "activation_bytes": 903168,
+      "predecessors": [
+        "features_2_block_0_0"
+      ],
+      "successors": [
+        "features_2_block_0_2"
+      ],
+      "proxy_compute_cost": 225792,
+      "normalized_compute_cost": 221,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 17,
+      "node_name": "features_2_block_0_2",
+      "op_type": "call_module",
+      "target": "features.2.block.0.2",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          72,
+          56,
+          56
+        ]
+      ],
+      "output_shape": [
+        1,
+        72,
+        56,
+        56
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 225792,
+      "activation_bytes": 903168,
+      "predecessors": [
+        "features_2_block_0_1"
+      ],
+      "successors": [
+        "features_2_block_1_0"
+      ],
+      "proxy_compute_cost": 225792,
+      "normalized_compute_cost": 221,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 18,
+      "node_name": "features_2_block_1_0",
+      "op_type": "call_module",
+      "target": "features.2.block.1.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          72,
+          56,
+          56
+        ]
+      ],
+      "output_shape": [
+        1,
+        72,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 648,
+      "static_data_bytes": 2592,
+      "activation_elements": 56448,
+      "activation_bytes": 225792,
+      "predecessors": [
+        "features_2_block_0_2"
+      ],
+      "successors": [
+        "features_2_block_1_1"
+      ],
+      "proxy_compute_cost": 508032,
+      "normalized_compute_cost": 497,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 19,
+      "node_name": "features_2_block_1_1",
+      "op_type": "call_module",
+      "target": "features.2.block.1.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          72,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        72,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 144,
+      "static_data_bytes": 1160,
+      "activation_elements": 56448,
+      "activation_bytes": 225792,
+      "predecessors": [
+        "features_2_block_1_0"
+      ],
+      "successors": [
+        "features_2_block_1_2"
+      ],
+      "proxy_compute_cost": 56448,
+      "normalized_compute_cost": 56,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 20,
+      "node_name": "features_2_block_1_2",
+      "op_type": "call_module",
+      "target": "features.2.block.1.2",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          72,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        72,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 56448,
+      "activation_bytes": 225792,
+      "predecessors": [
+        "features_2_block_1_1"
+      ],
+      "successors": [
+        "features_2_block_2_0"
+      ],
+      "proxy_compute_cost": 56448,
+      "normalized_compute_cost": 56,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 21,
+      "node_name": "features_2_block_2_0",
+      "op_type": "call_module",
+      "target": "features.2.block.2.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          72,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        24,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 1728,
+      "static_data_bytes": 6912,
+      "activation_elements": 18816,
+      "activation_bytes": 75264,
+      "predecessors": [
+        "features_2_block_1_2"
+      ],
+      "successors": [
+        "features_2_block_2_1"
+      ],
+      "proxy_compute_cost": 1354752,
+      "normalized_compute_cost": 1323,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 22,
+      "node_name": "features_2_block_2_1",
+      "op_type": "call_module",
+      "target": "features.2.block.2.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          24,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        24,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 48,
+      "static_data_bytes": 392,
+      "activation_elements": 18816,
+      "activation_bytes": 75264,
+      "predecessors": [
+        "features_2_block_2_0"
+      ],
+      "successors": [
+        "features_3_block_0_0",
+        "add"
+      ],
+      "proxy_compute_cost": 18816,
+      "normalized_compute_cost": 19,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 23,
+      "node_name": "features_3_block_0_0",
+      "op_type": "call_module",
+      "target": "features.3.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          24,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        88,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 2112,
+      "static_data_bytes": 8448,
+      "activation_elements": 68992,
+      "activation_bytes": 275968,
+      "predecessors": [
+        "features_2_block_2_1"
+      ],
+      "successors": [
+        "features_3_block_0_1"
+      ],
+      "proxy_compute_cost": 1655808,
+      "normalized_compute_cost": 1617,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 24,
+      "node_name": "features_3_block_0_1",
+      "op_type": "call_module",
+      "target": "features.3.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          88,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        88,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 176,
+      "static_data_bytes": 1416,
+      "activation_elements": 68992,
+      "activation_bytes": 275968,
+      "predecessors": [
+        "features_3_block_0_0"
+      ],
+      "successors": [
+        "features_3_block_0_2"
+      ],
+      "proxy_compute_cost": 68992,
+      "normalized_compute_cost": 68,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 25,
+      "node_name": "features_3_block_0_2",
+      "op_type": "call_module",
+      "target": "features.3.block.0.2",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          88,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        88,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 68992,
+      "activation_bytes": 275968,
+      "predecessors": [
+        "features_3_block_0_1"
+      ],
+      "successors": [
+        "features_3_block_1_0"
+      ],
+      "proxy_compute_cost": 68992,
+      "normalized_compute_cost": 68,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 26,
+      "node_name": "features_3_block_1_0",
+      "op_type": "call_module",
+      "target": "features.3.block.1.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          88,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        88,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 792,
+      "static_data_bytes": 3168,
+      "activation_elements": 68992,
+      "activation_bytes": 275968,
+      "predecessors": [
+        "features_3_block_0_2"
+      ],
+      "successors": [
+        "features_3_block_1_1"
+      ],
+      "proxy_compute_cost": 620928,
+      "normalized_compute_cost": 607,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 27,
+      "node_name": "features_3_block_1_1",
+      "op_type": "call_module",
+      "target": "features.3.block.1.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          88,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        88,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 176,
+      "static_data_bytes": 1416,
+      "activation_elements": 68992,
+      "activation_bytes": 275968,
+      "predecessors": [
+        "features_3_block_1_0"
+      ],
+      "successors": [
+        "features_3_block_1_2"
+      ],
+      "proxy_compute_cost": 68992,
+      "normalized_compute_cost": 68,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 28,
+      "node_name": "features_3_block_1_2",
+      "op_type": "call_module",
+      "target": "features.3.block.1.2",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          88,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        88,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 68992,
+      "activation_bytes": 275968,
+      "predecessors": [
+        "features_3_block_1_1"
+      ],
+      "successors": [
+        "features_3_block_2_0"
+      ],
+      "proxy_compute_cost": 68992,
+      "normalized_compute_cost": 68,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 29,
+      "node_name": "features_3_block_2_0",
+      "op_type": "call_module",
+      "target": "features.3.block.2.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          88,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        24,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 2112,
+      "static_data_bytes": 8448,
+      "activation_elements": 18816,
+      "activation_bytes": 75264,
+      "predecessors": [
+        "features_3_block_1_2"
+      ],
+      "successors": [
+        "features_3_block_2_1"
+      ],
+      "proxy_compute_cost": 1655808,
+      "normalized_compute_cost": 1617,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 30,
+      "node_name": "features_3_block_2_1",
+      "op_type": "call_module",
+      "target": "features.3.block.2.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          24,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        24,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 48,
+      "static_data_bytes": 392,
+      "activation_elements": 18816,
+      "activation_bytes": 75264,
+      "predecessors": [
+        "features_3_block_2_0"
+      ],
+      "successors": [
+        "add"
+      ],
+      "proxy_compute_cost": 18816,
+      "normalized_compute_cost": 19,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 31,
+      "node_name": "add",
+      "op_type": "call_function",
+      "target": "add",
+      "module_type": "add",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          24,
+          28,
+          28
+        ],
+        [
+          1,
+          24,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        24,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 18816,
+      "activation_bytes": 75264,
+      "predecessors": [
+        "features_3_block_2_1",
+        "features_2_block_2_1"
+      ],
+      "successors": [
+        "features_4_block_0_0"
+      ],
+      "proxy_compute_cost": 18816,
+      "normalized_compute_cost": 19,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 32,
+      "node_name": "features_4_block_0_0",
+      "op_type": "call_module",
+      "target": "features.4.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          24,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 2304,
+      "static_data_bytes": 9216,
+      "activation_elements": 75264,
+      "activation_bytes": 301056,
+      "predecessors": [
+        "add"
+      ],
+      "successors": [
+        "features_4_block_0_1"
+      ],
+      "proxy_compute_cost": 1806336,
+      "normalized_compute_cost": 1764,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 33,
+      "node_name": "features_4_block_0_1",
+      "op_type": "call_module",
+      "target": "features.4.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 192,
+      "static_data_bytes": 1544,
+      "activation_elements": 75264,
+      "activation_bytes": 301056,
+      "predecessors": [
+        "features_4_block_0_0"
+      ],
+      "successors": [
+        "features_4_block_0_2"
+      ],
+      "proxy_compute_cost": 75264,
+      "normalized_compute_cost": 74,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 34,
+      "node_name": "features_4_block_0_2",
+      "op_type": "call_module",
+      "target": "features.4.block.0.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        28,
+        28
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 75264,
+      "activation_bytes": 301056,
+      "predecessors": [
+        "features_4_block_0_1"
+      ],
+      "successors": [
+        "features_4_block_1_0"
+      ],
+      "proxy_compute_cost": 75264,
+      "normalized_compute_cost": 74,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 35,
+      "node_name": "features_4_block_1_0",
+      "op_type": "call_module",
+      "target": "features.4.block.1.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          28,
+          28
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 2400,
+      "static_data_bytes": 9600,
+      "activation_elements": 18816,
+      "activation_bytes": 75264,
+      "predecessors": [
+        "features_4_block_0_2"
+      ],
+      "successors": [
+        "features_4_block_1_1"
+      ],
+      "proxy_compute_cost": 470400,
+      "normalized_compute_cost": 460,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 36,
+      "node_name": "features_4_block_1_1",
+      "op_type": "call_module",
+      "target": "features.4.block.1.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 192,
+      "static_data_bytes": 1544,
+      "activation_elements": 18816,
+      "activation_bytes": 75264,
+      "predecessors": [
+        "features_4_block_1_0"
+      ],
+      "successors": [
+        "features_4_block_1_2"
+      ],
+      "proxy_compute_cost": 18816,
+      "normalized_compute_cost": 19,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 37,
+      "node_name": "features_4_block_1_2",
+      "op_type": "call_module",
+      "target": "features.4.block.1.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 18816,
+      "activation_bytes": 75264,
+      "predecessors": [
+        "features_4_block_1_1"
+      ],
+      "successors": [
+        "features_4_block_2_avgpool",
+        "mul_1"
+      ],
+      "proxy_compute_cost": 18816,
+      "normalized_compute_cost": 19,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 38,
+      "node_name": "features_4_block_2_avgpool",
+      "op_type": "call_module",
+      "target": "features.4.block.2.avgpool",
+      "module_type": "AdaptiveAvgPool2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 96,
+      "activation_bytes": 384,
+      "predecessors": [
+        "features_4_block_1_2"
+      ],
+      "successors": [
+        "features_4_block_2_fc1"
+      ],
+      "proxy_compute_cost": 18816,
+      "normalized_compute_cost": 19,
+      "proxy_rule": "Pooling input elements"
+    },
+    {
+      "node_id": 39,
+      "node_name": "features_4_block_2_fc1",
+      "op_type": "call_module",
+      "target": "features.4.block.2.fc1",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        24,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 2328,
+      "static_data_bytes": 9312,
+      "activation_elements": 24,
+      "activation_bytes": 96,
+      "predecessors": [
+        "features_4_block_2_avgpool"
+      ],
+      "successors": [
+        "features_4_block_2_activation"
+      ],
+      "proxy_compute_cost": 2304,
+      "normalized_compute_cost": 3,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 40,
+      "node_name": "features_4_block_2_activation",
+      "op_type": "call_module",
+      "target": "features.4.block.2.activation",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          24,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        24,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 24,
+      "activation_bytes": 96,
+      "predecessors": [
+        "features_4_block_2_fc1"
+      ],
+      "successors": [
+        "features_4_block_2_fc2"
+      ],
+      "proxy_compute_cost": 24,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 41,
+      "node_name": "features_4_block_2_fc2",
+      "op_type": "call_module",
+      "target": "features.4.block.2.fc2",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          24,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 2400,
+      "static_data_bytes": 9600,
+      "activation_elements": 96,
+      "activation_bytes": 384,
+      "predecessors": [
+        "features_4_block_2_activation"
+      ],
+      "successors": [
+        "features_4_block_2_scale_activation"
+      ],
+      "proxy_compute_cost": 2304,
+      "normalized_compute_cost": 3,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 42,
+      "node_name": "features_4_block_2_scale_activation",
+      "op_type": "call_module",
+      "target": "features.4.block.2.scale_activation",
+      "module_type": "Hardsigmoid",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 96,
+      "activation_bytes": 384,
+      "predecessors": [
+        "features_4_block_2_fc2"
+      ],
+      "successors": [
+        "mul_1"
+      ],
+      "proxy_compute_cost": 96,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 43,
+      "node_name": "mul_1",
+      "op_type": "call_function",
+      "target": "mul",
+      "module_type": "mul",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          1,
+          1
+        ],
+        [
+          1,
+          96,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 18816,
+      "activation_bytes": 75264,
+      "predecessors": [
+        "features_4_block_2_scale_activation",
+        "features_4_block_1_2"
+      ],
+      "successors": [
+        "features_4_block_3_0"
+      ],
+      "proxy_compute_cost": 18816,
+      "normalized_compute_cost": 19,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 44,
+      "node_name": "features_4_block_3_0",
+      "op_type": "call_module",
+      "target": "features.4.block.3.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        40,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 3840,
+      "static_data_bytes": 15360,
+      "activation_elements": 7840,
+      "activation_bytes": 31360,
+      "predecessors": [
+        "mul_1"
+      ],
+      "successors": [
+        "features_4_block_3_1"
+      ],
+      "proxy_compute_cost": 752640,
+      "normalized_compute_cost": 735,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 45,
+      "node_name": "features_4_block_3_1",
+      "op_type": "call_module",
+      "target": "features.4.block.3.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          40,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        40,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 80,
+      "static_data_bytes": 648,
+      "activation_elements": 7840,
+      "activation_bytes": 31360,
+      "predecessors": [
+        "features_4_block_3_0"
+      ],
+      "successors": [
+        "features_5_block_0_0",
+        "add_1"
+      ],
+      "proxy_compute_cost": 7840,
+      "normalized_compute_cost": 8,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 46,
+      "node_name": "features_5_block_0_0",
+      "op_type": "call_module",
+      "target": "features.5.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          40,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 9600,
+      "static_data_bytes": 38400,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_4_block_3_1"
+      ],
+      "successors": [
+        "features_5_block_0_1"
+      ],
+      "proxy_compute_cost": 1881600,
+      "normalized_compute_cost": 1838,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 47,
+      "node_name": "features_5_block_0_1",
+      "op_type": "call_module",
+      "target": "features.5.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 480,
+      "static_data_bytes": 3848,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_5_block_0_0"
+      ],
+      "successors": [
+        "features_5_block_0_2"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 48,
+      "node_name": "features_5_block_0_2",
+      "op_type": "call_module",
+      "target": "features.5.block.0.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_5_block_0_1"
+      ],
+      "successors": [
+        "features_5_block_1_0"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 49,
+      "node_name": "features_5_block_1_0",
+      "op_type": "call_module",
+      "target": "features.5.block.1.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 6000,
+      "static_data_bytes": 24000,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_5_block_0_2"
+      ],
+      "successors": [
+        "features_5_block_1_1"
+      ],
+      "proxy_compute_cost": 1176000,
+      "normalized_compute_cost": 1149,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 50,
+      "node_name": "features_5_block_1_1",
+      "op_type": "call_module",
+      "target": "features.5.block.1.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 480,
+      "static_data_bytes": 3848,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_5_block_1_0"
+      ],
+      "successors": [
+        "features_5_block_1_2"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 51,
+      "node_name": "features_5_block_1_2",
+      "op_type": "call_module",
+      "target": "features.5.block.1.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_5_block_1_1"
+      ],
+      "successors": [
+        "features_5_block_2_avgpool",
+        "mul_2"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 52,
+      "node_name": "features_5_block_2_avgpool",
+      "op_type": "call_module",
+      "target": "features.5.block.2.avgpool",
+      "module_type": "AdaptiveAvgPool2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 240,
+      "activation_bytes": 960,
+      "predecessors": [
+        "features_5_block_1_2"
+      ],
+      "successors": [
+        "features_5_block_2_fc1"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Pooling input elements"
+    },
+    {
+      "node_id": 53,
+      "node_name": "features_5_block_2_fc1",
+      "op_type": "call_module",
+      "target": "features.5.block.2.fc1",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        64,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 15424,
+      "static_data_bytes": 61696,
+      "activation_elements": 64,
+      "activation_bytes": 256,
+      "predecessors": [
+        "features_5_block_2_avgpool"
+      ],
+      "successors": [
+        "features_5_block_2_activation"
+      ],
+      "proxy_compute_cost": 15360,
+      "normalized_compute_cost": 15,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 54,
+      "node_name": "features_5_block_2_activation",
+      "op_type": "call_module",
+      "target": "features.5.block.2.activation",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          64,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        64,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 64,
+      "activation_bytes": 256,
+      "predecessors": [
+        "features_5_block_2_fc1"
+      ],
+      "successors": [
+        "features_5_block_2_fc2"
+      ],
+      "proxy_compute_cost": 64,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 55,
+      "node_name": "features_5_block_2_fc2",
+      "op_type": "call_module",
+      "target": "features.5.block.2.fc2",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          64,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 15600,
+      "static_data_bytes": 62400,
+      "activation_elements": 240,
+      "activation_bytes": 960,
+      "predecessors": [
+        "features_5_block_2_activation"
+      ],
+      "successors": [
+        "features_5_block_2_scale_activation"
+      ],
+      "proxy_compute_cost": 15360,
+      "normalized_compute_cost": 15,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 56,
+      "node_name": "features_5_block_2_scale_activation",
+      "op_type": "call_module",
+      "target": "features.5.block.2.scale_activation",
+      "module_type": "Hardsigmoid",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 240,
+      "activation_bytes": 960,
+      "predecessors": [
+        "features_5_block_2_fc2"
+      ],
+      "successors": [
+        "mul_2"
+      ],
+      "proxy_compute_cost": 240,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 57,
+      "node_name": "mul_2",
+      "op_type": "call_function",
+      "target": "mul",
+      "module_type": "mul",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          1,
+          1
+        ],
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_5_block_2_scale_activation",
+        "features_5_block_1_2"
+      ],
+      "successors": [
+        "features_5_block_3_0"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 58,
+      "node_name": "features_5_block_3_0",
+      "op_type": "call_module",
+      "target": "features.5.block.3.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        40,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 9600,
+      "static_data_bytes": 38400,
+      "activation_elements": 7840,
+      "activation_bytes": 31360,
+      "predecessors": [
+        "mul_2"
+      ],
+      "successors": [
+        "features_5_block_3_1"
+      ],
+      "proxy_compute_cost": 1881600,
+      "normalized_compute_cost": 1838,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 59,
+      "node_name": "features_5_block_3_1",
+      "op_type": "call_module",
+      "target": "features.5.block.3.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          40,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        40,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 80,
+      "static_data_bytes": 648,
+      "activation_elements": 7840,
+      "activation_bytes": 31360,
+      "predecessors": [
+        "features_5_block_3_0"
+      ],
+      "successors": [
+        "add_1"
+      ],
+      "proxy_compute_cost": 7840,
+      "normalized_compute_cost": 8,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 60,
+      "node_name": "add_1",
+      "op_type": "call_function",
+      "target": "add",
+      "module_type": "add",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          40,
+          14,
+          14
+        ],
+        [
+          1,
+          40,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        40,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 7840,
+      "activation_bytes": 31360,
+      "predecessors": [
+        "features_5_block_3_1",
+        "features_4_block_3_1"
+      ],
+      "successors": [
+        "features_6_block_0_0",
+        "add_2"
+      ],
+      "proxy_compute_cost": 7840,
+      "normalized_compute_cost": 8,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 61,
+      "node_name": "features_6_block_0_0",
+      "op_type": "call_module",
+      "target": "features.6.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          40,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 9600,
+      "static_data_bytes": 38400,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "add_1"
+      ],
+      "successors": [
+        "features_6_block_0_1"
+      ],
+      "proxy_compute_cost": 1881600,
+      "normalized_compute_cost": 1838,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 62,
+      "node_name": "features_6_block_0_1",
+      "op_type": "call_module",
+      "target": "features.6.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 480,
+      "static_data_bytes": 3848,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_6_block_0_0"
+      ],
+      "successors": [
+        "features_6_block_0_2"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 63,
+      "node_name": "features_6_block_0_2",
+      "op_type": "call_module",
+      "target": "features.6.block.0.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_6_block_0_1"
+      ],
+      "successors": [
+        "features_6_block_1_0"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 64,
+      "node_name": "features_6_block_1_0",
+      "op_type": "call_module",
+      "target": "features.6.block.1.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 6000,
+      "static_data_bytes": 24000,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_6_block_0_2"
+      ],
+      "successors": [
+        "features_6_block_1_1"
+      ],
+      "proxy_compute_cost": 1176000,
+      "normalized_compute_cost": 1149,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 65,
+      "node_name": "features_6_block_1_1",
+      "op_type": "call_module",
+      "target": "features.6.block.1.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 480,
+      "static_data_bytes": 3848,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_6_block_1_0"
+      ],
+      "successors": [
+        "features_6_block_1_2"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 66,
+      "node_name": "features_6_block_1_2",
+      "op_type": "call_module",
+      "target": "features.6.block.1.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_6_block_1_1"
+      ],
+      "successors": [
+        "features_6_block_2_avgpool",
+        "mul_3"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 67,
+      "node_name": "features_6_block_2_avgpool",
+      "op_type": "call_module",
+      "target": "features.6.block.2.avgpool",
+      "module_type": "AdaptiveAvgPool2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 240,
+      "activation_bytes": 960,
+      "predecessors": [
+        "features_6_block_1_2"
+      ],
+      "successors": [
+        "features_6_block_2_fc1"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Pooling input elements"
+    },
+    {
+      "node_id": 68,
+      "node_name": "features_6_block_2_fc1",
+      "op_type": "call_module",
+      "target": "features.6.block.2.fc1",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        64,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 15424,
+      "static_data_bytes": 61696,
+      "activation_elements": 64,
+      "activation_bytes": 256,
+      "predecessors": [
+        "features_6_block_2_avgpool"
+      ],
+      "successors": [
+        "features_6_block_2_activation"
+      ],
+      "proxy_compute_cost": 15360,
+      "normalized_compute_cost": 15,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 69,
+      "node_name": "features_6_block_2_activation",
+      "op_type": "call_module",
+      "target": "features.6.block.2.activation",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          64,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        64,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 64,
+      "activation_bytes": 256,
+      "predecessors": [
+        "features_6_block_2_fc1"
+      ],
+      "successors": [
+        "features_6_block_2_fc2"
+      ],
+      "proxy_compute_cost": 64,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 70,
+      "node_name": "features_6_block_2_fc2",
+      "op_type": "call_module",
+      "target": "features.6.block.2.fc2",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          64,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 15600,
+      "static_data_bytes": 62400,
+      "activation_elements": 240,
+      "activation_bytes": 960,
+      "predecessors": [
+        "features_6_block_2_activation"
+      ],
+      "successors": [
+        "features_6_block_2_scale_activation"
+      ],
+      "proxy_compute_cost": 15360,
+      "normalized_compute_cost": 15,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 71,
+      "node_name": "features_6_block_2_scale_activation",
+      "op_type": "call_module",
+      "target": "features.6.block.2.scale_activation",
+      "module_type": "Hardsigmoid",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 240,
+      "activation_bytes": 960,
+      "predecessors": [
+        "features_6_block_2_fc2"
+      ],
+      "successors": [
+        "mul_3"
+      ],
+      "proxy_compute_cost": 240,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 72,
+      "node_name": "mul_3",
+      "op_type": "call_function",
+      "target": "mul",
+      "module_type": "mul",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          1,
+          1
+        ],
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        240,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 47040,
+      "activation_bytes": 188160,
+      "predecessors": [
+        "features_6_block_2_scale_activation",
+        "features_6_block_1_2"
+      ],
+      "successors": [
+        "features_6_block_3_0"
+      ],
+      "proxy_compute_cost": 47040,
+      "normalized_compute_cost": 46,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 73,
+      "node_name": "features_6_block_3_0",
+      "op_type": "call_module",
+      "target": "features.6.block.3.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          240,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        40,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 9600,
+      "static_data_bytes": 38400,
+      "activation_elements": 7840,
+      "activation_bytes": 31360,
+      "predecessors": [
+        "mul_3"
+      ],
+      "successors": [
+        "features_6_block_3_1"
+      ],
+      "proxy_compute_cost": 1881600,
+      "normalized_compute_cost": 1838,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 74,
+      "node_name": "features_6_block_3_1",
+      "op_type": "call_module",
+      "target": "features.6.block.3.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          40,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        40,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 80,
+      "static_data_bytes": 648,
+      "activation_elements": 7840,
+      "activation_bytes": 31360,
+      "predecessors": [
+        "features_6_block_3_0"
+      ],
+      "successors": [
+        "add_2"
+      ],
+      "proxy_compute_cost": 7840,
+      "normalized_compute_cost": 8,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 75,
+      "node_name": "add_2",
+      "op_type": "call_function",
+      "target": "add",
+      "module_type": "add",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          40,
+          14,
+          14
+        ],
+        [
+          1,
+          40,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        40,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 7840,
+      "activation_bytes": 31360,
+      "predecessors": [
+        "features_6_block_3_1",
+        "add_1"
+      ],
+      "successors": [
+        "features_7_block_0_0"
+      ],
+      "proxy_compute_cost": 7840,
+      "normalized_compute_cost": 8,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 76,
+      "node_name": "features_7_block_0_0",
+      "op_type": "call_module",
+      "target": "features.7.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          40,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        120,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 4800,
+      "static_data_bytes": 19200,
+      "activation_elements": 23520,
+      "activation_bytes": 94080,
+      "predecessors": [
+        "add_2"
+      ],
+      "successors": [
+        "features_7_block_0_1"
+      ],
+      "proxy_compute_cost": 940800,
+      "normalized_compute_cost": 919,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 77,
+      "node_name": "features_7_block_0_1",
+      "op_type": "call_module",
+      "target": "features.7.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          120,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        120,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 240,
+      "static_data_bytes": 1928,
+      "activation_elements": 23520,
+      "activation_bytes": 94080,
+      "predecessors": [
+        "features_7_block_0_0"
+      ],
+      "successors": [
+        "features_7_block_0_2"
+      ],
+      "proxy_compute_cost": 23520,
+      "normalized_compute_cost": 23,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 78,
+      "node_name": "features_7_block_0_2",
+      "op_type": "call_module",
+      "target": "features.7.block.0.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          120,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        120,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 23520,
+      "activation_bytes": 94080,
+      "predecessors": [
+        "features_7_block_0_1"
+      ],
+      "successors": [
+        "features_7_block_1_0"
+      ],
+      "proxy_compute_cost": 23520,
+      "normalized_compute_cost": 23,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 79,
+      "node_name": "features_7_block_1_0",
+      "op_type": "call_module",
+      "target": "features.7.block.1.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          120,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        120,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 3000,
+      "static_data_bytes": 12000,
+      "activation_elements": 23520,
+      "activation_bytes": 94080,
+      "predecessors": [
+        "features_7_block_0_2"
+      ],
+      "successors": [
+        "features_7_block_1_1"
+      ],
+      "proxy_compute_cost": 588000,
+      "normalized_compute_cost": 575,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 80,
+      "node_name": "features_7_block_1_1",
+      "op_type": "call_module",
+      "target": "features.7.block.1.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          120,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        120,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 240,
+      "static_data_bytes": 1928,
+      "activation_elements": 23520,
+      "activation_bytes": 94080,
+      "predecessors": [
+        "features_7_block_1_0"
+      ],
+      "successors": [
+        "features_7_block_1_2"
+      ],
+      "proxy_compute_cost": 23520,
+      "normalized_compute_cost": 23,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 81,
+      "node_name": "features_7_block_1_2",
+      "op_type": "call_module",
+      "target": "features.7.block.1.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          120,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        120,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 23520,
+      "activation_bytes": 94080,
+      "predecessors": [
+        "features_7_block_1_1"
+      ],
+      "successors": [
+        "features_7_block_2_avgpool",
+        "mul_4"
+      ],
+      "proxy_compute_cost": 23520,
+      "normalized_compute_cost": 23,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 82,
+      "node_name": "features_7_block_2_avgpool",
+      "op_type": "call_module",
+      "target": "features.7.block.2.avgpool",
+      "module_type": "AdaptiveAvgPool2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          120,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        120,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 120,
+      "activation_bytes": 480,
+      "predecessors": [
+        "features_7_block_1_2"
+      ],
+      "successors": [
+        "features_7_block_2_fc1"
+      ],
+      "proxy_compute_cost": 23520,
+      "normalized_compute_cost": 23,
+      "proxy_rule": "Pooling input elements"
+    },
+    {
+      "node_id": 83,
+      "node_name": "features_7_block_2_fc1",
+      "op_type": "call_module",
+      "target": "features.7.block.2.fc1",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          120,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        32,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 3872,
+      "static_data_bytes": 15488,
+      "activation_elements": 32,
+      "activation_bytes": 128,
+      "predecessors": [
+        "features_7_block_2_avgpool"
+      ],
+      "successors": [
+        "features_7_block_2_activation"
+      ],
+      "proxy_compute_cost": 3840,
+      "normalized_compute_cost": 4,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 84,
+      "node_name": "features_7_block_2_activation",
+      "op_type": "call_module",
+      "target": "features.7.block.2.activation",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          32,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        32,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 32,
+      "activation_bytes": 128,
+      "predecessors": [
+        "features_7_block_2_fc1"
+      ],
+      "successors": [
+        "features_7_block_2_fc2"
+      ],
+      "proxy_compute_cost": 32,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 85,
+      "node_name": "features_7_block_2_fc2",
+      "op_type": "call_module",
+      "target": "features.7.block.2.fc2",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          32,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        120,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 3960,
+      "static_data_bytes": 15840,
+      "activation_elements": 120,
+      "activation_bytes": 480,
+      "predecessors": [
+        "features_7_block_2_activation"
+      ],
+      "successors": [
+        "features_7_block_2_scale_activation"
+      ],
+      "proxy_compute_cost": 3840,
+      "normalized_compute_cost": 4,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 86,
+      "node_name": "features_7_block_2_scale_activation",
+      "op_type": "call_module",
+      "target": "features.7.block.2.scale_activation",
+      "module_type": "Hardsigmoid",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          120,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        120,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 120,
+      "activation_bytes": 480,
+      "predecessors": [
+        "features_7_block_2_fc2"
+      ],
+      "successors": [
+        "mul_4"
+      ],
+      "proxy_compute_cost": 120,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 87,
+      "node_name": "mul_4",
+      "op_type": "call_function",
+      "target": "mul",
+      "module_type": "mul",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          120,
+          1,
+          1
+        ],
+        [
+          1,
+          120,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        120,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 23520,
+      "activation_bytes": 94080,
+      "predecessors": [
+        "features_7_block_2_scale_activation",
+        "features_7_block_1_2"
+      ],
+      "successors": [
+        "features_7_block_3_0"
+      ],
+      "proxy_compute_cost": 23520,
+      "normalized_compute_cost": 23,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 88,
+      "node_name": "features_7_block_3_0",
+      "op_type": "call_module",
+      "target": "features.7.block.3.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          120,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        48,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 5760,
+      "static_data_bytes": 23040,
+      "activation_elements": 9408,
+      "activation_bytes": 37632,
+      "predecessors": [
+        "mul_4"
+      ],
+      "successors": [
+        "features_7_block_3_1"
+      ],
+      "proxy_compute_cost": 1128960,
+      "normalized_compute_cost": 1103,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 89,
+      "node_name": "features_7_block_3_1",
+      "op_type": "call_module",
+      "target": "features.7.block.3.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          48,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        48,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 96,
+      "static_data_bytes": 776,
+      "activation_elements": 9408,
+      "activation_bytes": 37632,
+      "predecessors": [
+        "features_7_block_3_0"
+      ],
+      "successors": [
+        "features_8_block_0_0",
+        "add_3"
+      ],
+      "proxy_compute_cost": 9408,
+      "normalized_compute_cost": 10,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 90,
+      "node_name": "features_8_block_0_0",
+      "op_type": "call_module",
+      "target": "features.8.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          48,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 6912,
+      "static_data_bytes": 27648,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_7_block_3_1"
+      ],
+      "successors": [
+        "features_8_block_0_1"
+      ],
+      "proxy_compute_cost": 1354752,
+      "normalized_compute_cost": 1323,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 91,
+      "node_name": "features_8_block_0_1",
+      "op_type": "call_module",
+      "target": "features.8.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 288,
+      "static_data_bytes": 2312,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_8_block_0_0"
+      ],
+      "successors": [
+        "features_8_block_0_2"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 92,
+      "node_name": "features_8_block_0_2",
+      "op_type": "call_module",
+      "target": "features.8.block.0.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_8_block_0_1"
+      ],
+      "successors": [
+        "features_8_block_1_0"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 93,
+      "node_name": "features_8_block_1_0",
+      "op_type": "call_module",
+      "target": "features.8.block.1.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 3600,
+      "static_data_bytes": 14400,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_8_block_0_2"
+      ],
+      "successors": [
+        "features_8_block_1_1"
+      ],
+      "proxy_compute_cost": 705600,
+      "normalized_compute_cost": 690,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 94,
+      "node_name": "features_8_block_1_1",
+      "op_type": "call_module",
+      "target": "features.8.block.1.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 288,
+      "static_data_bytes": 2312,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_8_block_1_0"
+      ],
+      "successors": [
+        "features_8_block_1_2"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 95,
+      "node_name": "features_8_block_1_2",
+      "op_type": "call_module",
+      "target": "features.8.block.1.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_8_block_1_1"
+      ],
+      "successors": [
+        "features_8_block_2_avgpool",
+        "mul_5"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 96,
+      "node_name": "features_8_block_2_avgpool",
+      "op_type": "call_module",
+      "target": "features.8.block.2.avgpool",
+      "module_type": "AdaptiveAvgPool2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 144,
+      "activation_bytes": 576,
+      "predecessors": [
+        "features_8_block_1_2"
+      ],
+      "successors": [
+        "features_8_block_2_fc1"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Pooling input elements"
+    },
+    {
+      "node_id": 97,
+      "node_name": "features_8_block_2_fc1",
+      "op_type": "call_module",
+      "target": "features.8.block.2.fc1",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        40,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 5800,
+      "static_data_bytes": 23200,
+      "activation_elements": 40,
+      "activation_bytes": 160,
+      "predecessors": [
+        "features_8_block_2_avgpool"
+      ],
+      "successors": [
+        "features_8_block_2_activation"
+      ],
+      "proxy_compute_cost": 5760,
+      "normalized_compute_cost": 6,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 98,
+      "node_name": "features_8_block_2_activation",
+      "op_type": "call_module",
+      "target": "features.8.block.2.activation",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          40,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        40,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 40,
+      "activation_bytes": 160,
+      "predecessors": [
+        "features_8_block_2_fc1"
+      ],
+      "successors": [
+        "features_8_block_2_fc2"
+      ],
+      "proxy_compute_cost": 40,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 99,
+      "node_name": "features_8_block_2_fc2",
+      "op_type": "call_module",
+      "target": "features.8.block.2.fc2",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          40,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 5904,
+      "static_data_bytes": 23616,
+      "activation_elements": 144,
+      "activation_bytes": 576,
+      "predecessors": [
+        "features_8_block_2_activation"
+      ],
+      "successors": [
+        "features_8_block_2_scale_activation"
+      ],
+      "proxy_compute_cost": 5760,
+      "normalized_compute_cost": 6,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 100,
+      "node_name": "features_8_block_2_scale_activation",
+      "op_type": "call_module",
+      "target": "features.8.block.2.scale_activation",
+      "module_type": "Hardsigmoid",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 144,
+      "activation_bytes": 576,
+      "predecessors": [
+        "features_8_block_2_fc2"
+      ],
+      "successors": [
+        "mul_5"
+      ],
+      "proxy_compute_cost": 144,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 101,
+      "node_name": "mul_5",
+      "op_type": "call_function",
+      "target": "mul",
+      "module_type": "mul",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          1,
+          1
+        ],
+        [
+          1,
+          144,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_8_block_2_scale_activation",
+        "features_8_block_1_2"
+      ],
+      "successors": [
+        "features_8_block_3_0"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 102,
+      "node_name": "features_8_block_3_0",
+      "op_type": "call_module",
+      "target": "features.8.block.3.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        48,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 6912,
+      "static_data_bytes": 27648,
+      "activation_elements": 9408,
+      "activation_bytes": 37632,
+      "predecessors": [
+        "mul_5"
+      ],
+      "successors": [
+        "features_8_block_3_1"
+      ],
+      "proxy_compute_cost": 1354752,
+      "normalized_compute_cost": 1323,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 103,
+      "node_name": "features_8_block_3_1",
+      "op_type": "call_module",
+      "target": "features.8.block.3.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          48,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        48,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 96,
+      "static_data_bytes": 776,
+      "activation_elements": 9408,
+      "activation_bytes": 37632,
+      "predecessors": [
+        "features_8_block_3_0"
+      ],
+      "successors": [
+        "add_3"
+      ],
+      "proxy_compute_cost": 9408,
+      "normalized_compute_cost": 10,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 104,
+      "node_name": "add_3",
+      "op_type": "call_function",
+      "target": "add",
+      "module_type": "add",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          48,
+          14,
+          14
+        ],
+        [
+          1,
+          48,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        48,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 9408,
+      "activation_bytes": 37632,
+      "predecessors": [
+        "features_8_block_3_1",
+        "features_7_block_3_1"
+      ],
+      "successors": [
+        "features_9_block_0_0"
+      ],
+      "proxy_compute_cost": 9408,
+      "normalized_compute_cost": 10,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 105,
+      "node_name": "features_9_block_0_0",
+      "op_type": "call_module",
+      "target": "features.9.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          48,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        288,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 13824,
+      "static_data_bytes": 55296,
+      "activation_elements": 56448,
+      "activation_bytes": 225792,
+      "predecessors": [
+        "add_3"
+      ],
+      "successors": [
+        "features_9_block_0_1"
+      ],
+      "proxy_compute_cost": 2709504,
+      "normalized_compute_cost": 2646,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 106,
+      "node_name": "features_9_block_0_1",
+      "op_type": "call_module",
+      "target": "features.9.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          288,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        288,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 576,
+      "static_data_bytes": 4616,
+      "activation_elements": 56448,
+      "activation_bytes": 225792,
+      "predecessors": [
+        "features_9_block_0_0"
+      ],
+      "successors": [
+        "features_9_block_0_2"
+      ],
+      "proxy_compute_cost": 56448,
+      "normalized_compute_cost": 56,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 107,
+      "node_name": "features_9_block_0_2",
+      "op_type": "call_module",
+      "target": "features.9.block.0.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          288,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        288,
+        14,
+        14
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 56448,
+      "activation_bytes": 225792,
+      "predecessors": [
+        "features_9_block_0_1"
+      ],
+      "successors": [
+        "features_9_block_1_0"
+      ],
+      "proxy_compute_cost": 56448,
+      "normalized_compute_cost": 56,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 108,
+      "node_name": "features_9_block_1_0",
+      "op_type": "call_module",
+      "target": "features.9.block.1.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          288,
+          14,
+          14
+        ]
+      ],
+      "output_shape": [
+        1,
+        288,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 7200,
+      "static_data_bytes": 28800,
+      "activation_elements": 14112,
+      "activation_bytes": 56448,
+      "predecessors": [
+        "features_9_block_0_2"
+      ],
+      "successors": [
+        "features_9_block_1_1"
+      ],
+      "proxy_compute_cost": 352800,
+      "normalized_compute_cost": 345,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 109,
+      "node_name": "features_9_block_1_1",
+      "op_type": "call_module",
+      "target": "features.9.block.1.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          288,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        288,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 576,
+      "static_data_bytes": 4616,
+      "activation_elements": 14112,
+      "activation_bytes": 56448,
+      "predecessors": [
+        "features_9_block_1_0"
+      ],
+      "successors": [
+        "features_9_block_1_2"
+      ],
+      "proxy_compute_cost": 14112,
+      "normalized_compute_cost": 14,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 110,
+      "node_name": "features_9_block_1_2",
+      "op_type": "call_module",
+      "target": "features.9.block.1.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          288,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        288,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 14112,
+      "activation_bytes": 56448,
+      "predecessors": [
+        "features_9_block_1_1"
+      ],
+      "successors": [
+        "features_9_block_2_avgpool",
+        "mul_6"
+      ],
+      "proxy_compute_cost": 14112,
+      "normalized_compute_cost": 14,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 111,
+      "node_name": "features_9_block_2_avgpool",
+      "op_type": "call_module",
+      "target": "features.9.block.2.avgpool",
+      "module_type": "AdaptiveAvgPool2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          288,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        288,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 288,
+      "activation_bytes": 1152,
+      "predecessors": [
+        "features_9_block_1_2"
+      ],
+      "successors": [
+        "features_9_block_2_fc1"
+      ],
+      "proxy_compute_cost": 14112,
+      "normalized_compute_cost": 14,
+      "proxy_rule": "Pooling input elements"
+    },
+    {
+      "node_id": 112,
+      "node_name": "features_9_block_2_fc1",
+      "op_type": "call_module",
+      "target": "features.9.block.2.fc1",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          288,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        72,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 20808,
+      "static_data_bytes": 83232,
+      "activation_elements": 72,
+      "activation_bytes": 288,
+      "predecessors": [
+        "features_9_block_2_avgpool"
+      ],
+      "successors": [
+        "features_9_block_2_activation"
+      ],
+      "proxy_compute_cost": 20736,
+      "normalized_compute_cost": 21,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 113,
+      "node_name": "features_9_block_2_activation",
+      "op_type": "call_module",
+      "target": "features.9.block.2.activation",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          72,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        72,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 72,
+      "activation_bytes": 288,
+      "predecessors": [
+        "features_9_block_2_fc1"
+      ],
+      "successors": [
+        "features_9_block_2_fc2"
+      ],
+      "proxy_compute_cost": 72,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 114,
+      "node_name": "features_9_block_2_fc2",
+      "op_type": "call_module",
+      "target": "features.9.block.2.fc2",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          72,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        288,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 21024,
+      "static_data_bytes": 84096,
+      "activation_elements": 288,
+      "activation_bytes": 1152,
+      "predecessors": [
+        "features_9_block_2_activation"
+      ],
+      "successors": [
+        "features_9_block_2_scale_activation"
+      ],
+      "proxy_compute_cost": 20736,
+      "normalized_compute_cost": 21,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 115,
+      "node_name": "features_9_block_2_scale_activation",
+      "op_type": "call_module",
+      "target": "features.9.block.2.scale_activation",
+      "module_type": "Hardsigmoid",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          288,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        288,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 288,
+      "activation_bytes": 1152,
+      "predecessors": [
+        "features_9_block_2_fc2"
+      ],
+      "successors": [
+        "mul_6"
+      ],
+      "proxy_compute_cost": 288,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 116,
+      "node_name": "mul_6",
+      "op_type": "call_function",
+      "target": "mul",
+      "module_type": "mul",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          288,
+          1,
+          1
+        ],
+        [
+          1,
+          288,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        288,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 14112,
+      "activation_bytes": 56448,
+      "predecessors": [
+        "features_9_block_2_scale_activation",
+        "features_9_block_1_2"
+      ],
+      "successors": [
+        "features_9_block_3_0"
+      ],
+      "proxy_compute_cost": 14112,
+      "normalized_compute_cost": 14,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 117,
+      "node_name": "features_9_block_3_0",
+      "op_type": "call_module",
+      "target": "features.9.block.3.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          288,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 27648,
+      "static_data_bytes": 110592,
+      "activation_elements": 4704,
+      "activation_bytes": 18816,
+      "predecessors": [
+        "mul_6"
+      ],
+      "successors": [
+        "features_9_block_3_1"
+      ],
+      "proxy_compute_cost": 1354752,
+      "normalized_compute_cost": 1323,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 118,
+      "node_name": "features_9_block_3_1",
+      "op_type": "call_module",
+      "target": "features.9.block.3.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 192,
+      "static_data_bytes": 1544,
+      "activation_elements": 4704,
+      "activation_bytes": 18816,
+      "predecessors": [
+        "features_9_block_3_0"
+      ],
+      "successors": [
+        "features_10_block_0_0",
+        "add_4"
+      ],
+      "proxy_compute_cost": 4704,
+      "normalized_compute_cost": 5,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 119,
+      "node_name": "features_10_block_0_0",
+      "op_type": "call_module",
+      "target": "features.10.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 55296,
+      "static_data_bytes": 221184,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_9_block_3_1"
+      ],
+      "successors": [
+        "features_10_block_0_1"
+      ],
+      "proxy_compute_cost": 2709504,
+      "normalized_compute_cost": 2646,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 120,
+      "node_name": "features_10_block_0_1",
+      "op_type": "call_module",
+      "target": "features.10.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 1152,
+      "static_data_bytes": 9224,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_10_block_0_0"
+      ],
+      "successors": [
+        "features_10_block_0_2"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 121,
+      "node_name": "features_10_block_0_2",
+      "op_type": "call_module",
+      "target": "features.10.block.0.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_10_block_0_1"
+      ],
+      "successors": [
+        "features_10_block_1_0"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 122,
+      "node_name": "features_10_block_1_0",
+      "op_type": "call_module",
+      "target": "features.10.block.1.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 14400,
+      "static_data_bytes": 57600,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_10_block_0_2"
+      ],
+      "successors": [
+        "features_10_block_1_1"
+      ],
+      "proxy_compute_cost": 705600,
+      "normalized_compute_cost": 690,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 123,
+      "node_name": "features_10_block_1_1",
+      "op_type": "call_module",
+      "target": "features.10.block.1.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 1152,
+      "static_data_bytes": 9224,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_10_block_1_0"
+      ],
+      "successors": [
+        "features_10_block_1_2"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 124,
+      "node_name": "features_10_block_1_2",
+      "op_type": "call_module",
+      "target": "features.10.block.1.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_10_block_1_1"
+      ],
+      "successors": [
+        "features_10_block_2_avgpool",
+        "mul_7"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 125,
+      "node_name": "features_10_block_2_avgpool",
+      "op_type": "call_module",
+      "target": "features.10.block.2.avgpool",
+      "module_type": "AdaptiveAvgPool2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 576,
+      "activation_bytes": 2304,
+      "predecessors": [
+        "features_10_block_1_2"
+      ],
+      "successors": [
+        "features_10_block_2_fc1"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Pooling input elements"
+    },
+    {
+      "node_id": 126,
+      "node_name": "features_10_block_2_fc1",
+      "op_type": "call_module",
+      "target": "features.10.block.2.fc1",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 83088,
+      "static_data_bytes": 332352,
+      "activation_elements": 144,
+      "activation_bytes": 576,
+      "predecessors": [
+        "features_10_block_2_avgpool"
+      ],
+      "successors": [
+        "features_10_block_2_activation"
+      ],
+      "proxy_compute_cost": 82944,
+      "normalized_compute_cost": 81,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 127,
+      "node_name": "features_10_block_2_activation",
+      "op_type": "call_module",
+      "target": "features.10.block.2.activation",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 144,
+      "activation_bytes": 576,
+      "predecessors": [
+        "features_10_block_2_fc1"
+      ],
+      "successors": [
+        "features_10_block_2_fc2"
+      ],
+      "proxy_compute_cost": 144,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 128,
+      "node_name": "features_10_block_2_fc2",
+      "op_type": "call_module",
+      "target": "features.10.block.2.fc2",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 83520,
+      "static_data_bytes": 334080,
+      "activation_elements": 576,
+      "activation_bytes": 2304,
+      "predecessors": [
+        "features_10_block_2_activation"
+      ],
+      "successors": [
+        "features_10_block_2_scale_activation"
+      ],
+      "proxy_compute_cost": 82944,
+      "normalized_compute_cost": 81,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 129,
+      "node_name": "features_10_block_2_scale_activation",
+      "op_type": "call_module",
+      "target": "features.10.block.2.scale_activation",
+      "module_type": "Hardsigmoid",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 576,
+      "activation_bytes": 2304,
+      "predecessors": [
+        "features_10_block_2_fc2"
+      ],
+      "successors": [
+        "mul_7"
+      ],
+      "proxy_compute_cost": 576,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 130,
+      "node_name": "mul_7",
+      "op_type": "call_function",
+      "target": "mul",
+      "module_type": "mul",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          1,
+          1
+        ],
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_10_block_2_scale_activation",
+        "features_10_block_1_2"
+      ],
+      "successors": [
+        "features_10_block_3_0"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 131,
+      "node_name": "features_10_block_3_0",
+      "op_type": "call_module",
+      "target": "features.10.block.3.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 55296,
+      "static_data_bytes": 221184,
+      "activation_elements": 4704,
+      "activation_bytes": 18816,
+      "predecessors": [
+        "mul_7"
+      ],
+      "successors": [
+        "features_10_block_3_1"
+      ],
+      "proxy_compute_cost": 2709504,
+      "normalized_compute_cost": 2646,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 132,
+      "node_name": "features_10_block_3_1",
+      "op_type": "call_module",
+      "target": "features.10.block.3.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 192,
+      "static_data_bytes": 1544,
+      "activation_elements": 4704,
+      "activation_bytes": 18816,
+      "predecessors": [
+        "features_10_block_3_0"
+      ],
+      "successors": [
+        "add_4"
+      ],
+      "proxy_compute_cost": 4704,
+      "normalized_compute_cost": 5,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 133,
+      "node_name": "add_4",
+      "op_type": "call_function",
+      "target": "add",
+      "module_type": "add",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          7,
+          7
+        ],
+        [
+          1,
+          96,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 4704,
+      "activation_bytes": 18816,
+      "predecessors": [
+        "features_10_block_3_1",
+        "features_9_block_3_1"
+      ],
+      "successors": [
+        "features_11_block_0_0",
+        "add_5"
+      ],
+      "proxy_compute_cost": 4704,
+      "normalized_compute_cost": 5,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 134,
+      "node_name": "features_11_block_0_0",
+      "op_type": "call_module",
+      "target": "features.11.block.0.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 55296,
+      "static_data_bytes": 221184,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "add_4"
+      ],
+      "successors": [
+        "features_11_block_0_1"
+      ],
+      "proxy_compute_cost": 2709504,
+      "normalized_compute_cost": 2646,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 135,
+      "node_name": "features_11_block_0_1",
+      "op_type": "call_module",
+      "target": "features.11.block.0.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 1152,
+      "static_data_bytes": 9224,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_11_block_0_0"
+      ],
+      "successors": [
+        "features_11_block_0_2"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 136,
+      "node_name": "features_11_block_0_2",
+      "op_type": "call_module",
+      "target": "features.11.block.0.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_11_block_0_1"
+      ],
+      "successors": [
+        "features_11_block_1_0"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 137,
+      "node_name": "features_11_block_1_0",
+      "op_type": "call_module",
+      "target": "features.11.block.1.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 14400,
+      "static_data_bytes": 57600,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_11_block_0_2"
+      ],
+      "successors": [
+        "features_11_block_1_1"
+      ],
+      "proxy_compute_cost": 705600,
+      "normalized_compute_cost": 690,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 138,
+      "node_name": "features_11_block_1_1",
+      "op_type": "call_module",
+      "target": "features.11.block.1.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 1152,
+      "static_data_bytes": 9224,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_11_block_1_0"
+      ],
+      "successors": [
+        "features_11_block_1_2"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 139,
+      "node_name": "features_11_block_1_2",
+      "op_type": "call_module",
+      "target": "features.11.block.1.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_11_block_1_1"
+      ],
+      "successors": [
+        "features_11_block_2_avgpool",
+        "mul_8"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 140,
+      "node_name": "features_11_block_2_avgpool",
+      "op_type": "call_module",
+      "target": "features.11.block.2.avgpool",
+      "module_type": "AdaptiveAvgPool2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 576,
+      "activation_bytes": 2304,
+      "predecessors": [
+        "features_11_block_1_2"
+      ],
+      "successors": [
+        "features_11_block_2_fc1"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Pooling input elements"
+    },
+    {
+      "node_id": 141,
+      "node_name": "features_11_block_2_fc1",
+      "op_type": "call_module",
+      "target": "features.11.block.2.fc1",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 83088,
+      "static_data_bytes": 332352,
+      "activation_elements": 144,
+      "activation_bytes": 576,
+      "predecessors": [
+        "features_11_block_2_avgpool"
+      ],
+      "successors": [
+        "features_11_block_2_activation"
+      ],
+      "proxy_compute_cost": 82944,
+      "normalized_compute_cost": 81,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 142,
+      "node_name": "features_11_block_2_activation",
+      "op_type": "call_module",
+      "target": "features.11.block.2.activation",
+      "module_type": "ReLU",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        144,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 144,
+      "activation_bytes": 576,
+      "predecessors": [
+        "features_11_block_2_fc1"
+      ],
+      "successors": [
+        "features_11_block_2_fc2"
+      ],
+      "proxy_compute_cost": 144,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 143,
+      "node_name": "features_11_block_2_fc2",
+      "op_type": "call_module",
+      "target": "features.11.block.2.fc2",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          144,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 83520,
+      "static_data_bytes": 334080,
+      "activation_elements": 576,
+      "activation_bytes": 2304,
+      "predecessors": [
+        "features_11_block_2_activation"
+      ],
+      "successors": [
+        "features_11_block_2_scale_activation"
+      ],
+      "proxy_compute_cost": 82944,
+      "normalized_compute_cost": 81,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 144,
+      "node_name": "features_11_block_2_scale_activation",
+      "op_type": "call_module",
+      "target": "features.11.block.2.scale_activation",
+      "module_type": "Hardsigmoid",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 576,
+      "activation_bytes": 2304,
+      "predecessors": [
+        "features_11_block_2_fc2"
+      ],
+      "successors": [
+        "mul_8"
+      ],
+      "proxy_compute_cost": 576,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 145,
+      "node_name": "mul_8",
+      "op_type": "call_function",
+      "target": "mul",
+      "module_type": "mul",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          1,
+          1
+        ],
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_11_block_2_scale_activation",
+        "features_11_block_1_2"
+      ],
+      "successors": [
+        "features_11_block_3_0"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 146,
+      "node_name": "features_11_block_3_0",
+      "op_type": "call_module",
+      "target": "features.11.block.3.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 55296,
+      "static_data_bytes": 221184,
+      "activation_elements": 4704,
+      "activation_bytes": 18816,
+      "predecessors": [
+        "mul_8"
+      ],
+      "successors": [
+        "features_11_block_3_1"
+      ],
+      "proxy_compute_cost": 2709504,
+      "normalized_compute_cost": 2646,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 147,
+      "node_name": "features_11_block_3_1",
+      "op_type": "call_module",
+      "target": "features.11.block.3.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 192,
+      "static_data_bytes": 1544,
+      "activation_elements": 4704,
+      "activation_bytes": 18816,
+      "predecessors": [
+        "features_11_block_3_0"
+      ],
+      "successors": [
+        "add_5"
+      ],
+      "proxy_compute_cost": 4704,
+      "normalized_compute_cost": 5,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 148,
+      "node_name": "add_5",
+      "op_type": "call_function",
+      "target": "add",
+      "module_type": "add",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          7,
+          7
+        ],
+        [
+          1,
+          96,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        96,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 4704,
+      "activation_bytes": 18816,
+      "predecessors": [
+        "features_11_block_3_1",
+        "add_4"
+      ],
+      "successors": [
+        "features_12_0"
+      ],
+      "proxy_compute_cost": 4704,
+      "normalized_compute_cost": 5,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 149,
+      "node_name": "features_12_0",
+      "op_type": "call_module",
+      "target": "features.12.0",
+      "module_type": "Conv2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          96,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 55296,
+      "static_data_bytes": 221184,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "add_5"
+      ],
+      "successors": [
+        "features_12_1"
+      ],
+      "proxy_compute_cost": 2709504,
+      "normalized_compute_cost": 2646,
+      "proxy_rule": "Conv MACs"
+    },
+    {
+      "node_id": 150,
+      "node_name": "features_12_1",
+      "op_type": "call_module",
+      "target": "features.12.1",
+      "module_type": "BatchNorm2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 1152,
+      "static_data_bytes": 9224,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_12_0"
+      ],
+      "successors": [
+        "features_12_2"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 151,
+      "node_name": "features_12_2",
+      "op_type": "call_module",
+      "target": "features.12.2",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        7,
+        7
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 28224,
+      "activation_bytes": 112896,
+      "predecessors": [
+        "features_12_1"
+      ],
+      "successors": [
+        "avgpool"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 152,
+      "node_name": "avgpool",
+      "op_type": "call_module",
+      "target": "avgpool",
+      "module_type": "AdaptiveAvgPool2d",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          7,
+          7
+        ]
+      ],
+      "output_shape": [
+        1,
+        576,
+        1,
+        1
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 576,
+      "activation_bytes": 2304,
+      "predecessors": [
+        "features_12_2"
+      ],
+      "successors": [
+        "flatten"
+      ],
+      "proxy_compute_cost": 28224,
+      "normalized_compute_cost": 28,
+      "proxy_rule": "Pooling input elements"
+    },
+    {
+      "node_id": 153,
+      "node_name": "flatten",
+      "op_type": "call_function",
+      "target": "flatten",
+      "module_type": "flatten",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576,
+          1,
+          1
+        ]
+      ],
+      "output_shape": [
+        1,
+        576
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 576,
+      "activation_bytes": 2304,
+      "predecessors": [
+        "avgpool"
+      ],
+      "successors": [
+        "classifier_0"
+      ],
+      "proxy_compute_cost": 576,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 154,
+      "node_name": "classifier_0",
+      "op_type": "call_module",
+      "target": "classifier.0",
+      "module_type": "Linear",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          576
+        ]
+      ],
+      "output_shape": [
+        1,
+        1024
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 590848,
+      "static_data_bytes": 2363392,
+      "activation_elements": 1024,
+      "activation_bytes": 4096,
+      "predecessors": [
+        "flatten"
+      ],
+      "successors": [
+        "classifier_1"
+      ],
+      "proxy_compute_cost": 589824,
+      "normalized_compute_cost": 576,
+      "proxy_rule": "Linear MACs"
+    },
+    {
+      "node_id": 155,
+      "node_name": "classifier_1",
+      "op_type": "call_module",
+      "target": "classifier.1",
+      "module_type": "Hardswish",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          1024
+        ]
+      ],
+      "output_shape": [
+        1,
+        1024
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 1024,
+      "activation_bytes": 4096,
+      "predecessors": [
+        "classifier_0"
+      ],
+      "successors": [
+        "classifier_2"
+      ],
+      "proxy_compute_cost": 1024,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 156,
+      "node_name": "classifier_2",
+      "op_type": "call_module",
+      "target": "classifier.2",
+      "module_type": "Dropout",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          1024
+        ]
+      ],
+      "output_shape": [
+        1,
+        1024
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 1024,
+      "activation_bytes": 4096,
+      "predecessors": [
+        "classifier_1"
+      ],
+      "successors": [
+        "classifier_3"
+      ],
+      "proxy_compute_cost": 1024,
+      "normalized_compute_cost": 1,
+      "proxy_rule": "Elementwise output elements"
+    },
+    {
+      "node_id": 157,
+      "node_name": "classifier_3",
+      "op_type": "call_module",
+      "target": "classifier.3",
+      "module_type": "Linear",
+      "classification": "compute",
+      "input_shape": [
+        [
+          1,
+          1024
+        ]
+      ],
+      "output_shape": [
+        1,
+        1000
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 1025000,
+      "static_data_bytes": 4100000,
+      "activation_elements": 1000,
+      "activation_bytes": 4000,
+      "predecessors": [
+        "classifier_2"
+      ],
+      "successors": [
+        "output"
+      ],
+      "proxy_compute_cost": 1024000,
+      "normalized_compute_cost": 1000,
+      "proxy_rule": "Linear MACs"
+    },
+    {
+      "node_id": 158,
+      "node_name": "output",
+      "op_type": "output",
+      "target": "output",
+      "module_type": "output",
+      "classification": "output",
+      "input_shape": [
+        [
+          1,
+          1000
+        ]
+      ],
+      "output_shape": [
+        1,
+        1000
+      ],
+      "dtype": "torch.float32",
+      "element_bytes": 4,
+      "parameter_count": 0,
+      "static_data_bytes": 0,
+      "activation_elements": 1000,
+      "activation_bytes": 4000,
+      "predecessors": [
+        "classifier_3"
+      ],
+      "successors": [],
+      "proxy_compute_cost": null,
+      "normalized_compute_cost": null,
+      "proxy_rule": "Not a compute task"
+    }
+  ],
+  "edges": [
+    {
+      "source": "x",
+      "target": "features_0_0",
+      "tensor_size_bytes": 602112
+    },
+    {
+      "source": "features_0_0",
+      "target": "features_0_1",
+      "tensor_size_bytes": 802816
+    },
+    {
+      "source": "features_0_1",
+      "target": "features_0_2",
+      "tensor_size_bytes": 802816
+    },
+    {
+      "source": "features_0_2",
+      "target": "features_1_block_0_0",
+      "tensor_size_bytes": 802816
+    },
+    {
+      "source": "features_1_block_0_0",
+      "target": "features_1_block_0_1",
+      "tensor_size_bytes": 200704
+    },
+    {
+      "source": "features_1_block_0_1",
+      "target": "features_1_block_0_2",
+      "tensor_size_bytes": 200704
+    },
+    {
+      "source": "features_1_block_0_2",
+      "target": "features_1_block_1_avgpool",
+      "tensor_size_bytes": 200704
+    },
+    {
+      "source": "features_1_block_1_avgpool",
+      "target": "features_1_block_1_fc1",
+      "tensor_size_bytes": 64
+    },
+    {
+      "source": "features_1_block_1_fc1",
+      "target": "features_1_block_1_activation",
+      "tensor_size_bytes": 32
+    },
+    {
+      "source": "features_1_block_1_activation",
+      "target": "features_1_block_1_fc2",
+      "tensor_size_bytes": 32
+    },
+    {
+      "source": "features_1_block_1_fc2",
+      "target": "features_1_block_1_scale_activation",
+      "tensor_size_bytes": 64
+    },
+    {
+      "source": "features_1_block_1_scale_activation",
+      "target": "mul",
+      "tensor_size_bytes": 64
+    },
+    {
+      "source": "features_1_block_0_2",
+      "target": "mul",
+      "tensor_size_bytes": 200704
+    },
+    {
+      "source": "mul",
+      "target": "features_1_block_2_0",
+      "tensor_size_bytes": 200704
+    },
+    {
+      "source": "features_1_block_2_0",
+      "target": "features_1_block_2_1",
+      "tensor_size_bytes": 200704
+    },
+    {
+      "source": "features_1_block_2_1",
+      "target": "features_2_block_0_0",
+      "tensor_size_bytes": 200704
+    },
+    {
+      "source": "features_2_block_0_0",
+      "target": "features_2_block_0_1",
+      "tensor_size_bytes": 903168
+    },
+    {
+      "source": "features_2_block_0_1",
+      "target": "features_2_block_0_2",
+      "tensor_size_bytes": 903168
+    },
+    {
+      "source": "features_2_block_0_2",
+      "target": "features_2_block_1_0",
+      "tensor_size_bytes": 903168
+    },
+    {
+      "source": "features_2_block_1_0",
+      "target": "features_2_block_1_1",
+      "tensor_size_bytes": 225792
+    },
+    {
+      "source": "features_2_block_1_1",
+      "target": "features_2_block_1_2",
+      "tensor_size_bytes": 225792
+    },
+    {
+      "source": "features_2_block_1_2",
+      "target": "features_2_block_2_0",
+      "tensor_size_bytes": 225792
+    },
+    {
+      "source": "features_2_block_2_0",
+      "target": "features_2_block_2_1",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "features_2_block_2_1",
+      "target": "features_3_block_0_0",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "features_3_block_0_0",
+      "target": "features_3_block_0_1",
+      "tensor_size_bytes": 275968
+    },
+    {
+      "source": "features_3_block_0_1",
+      "target": "features_3_block_0_2",
+      "tensor_size_bytes": 275968
+    },
+    {
+      "source": "features_3_block_0_2",
+      "target": "features_3_block_1_0",
+      "tensor_size_bytes": 275968
+    },
+    {
+      "source": "features_3_block_1_0",
+      "target": "features_3_block_1_1",
+      "tensor_size_bytes": 275968
+    },
+    {
+      "source": "features_3_block_1_1",
+      "target": "features_3_block_1_2",
+      "tensor_size_bytes": 275968
+    },
+    {
+      "source": "features_3_block_1_2",
+      "target": "features_3_block_2_0",
+      "tensor_size_bytes": 275968
+    },
+    {
+      "source": "features_3_block_2_0",
+      "target": "features_3_block_2_1",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "features_3_block_2_1",
+      "target": "add",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "features_2_block_2_1",
+      "target": "add",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "add",
+      "target": "features_4_block_0_0",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "features_4_block_0_0",
+      "target": "features_4_block_0_1",
+      "tensor_size_bytes": 301056
+    },
+    {
+      "source": "features_4_block_0_1",
+      "target": "features_4_block_0_2",
+      "tensor_size_bytes": 301056
+    },
+    {
+      "source": "features_4_block_0_2",
+      "target": "features_4_block_1_0",
+      "tensor_size_bytes": 301056
+    },
+    {
+      "source": "features_4_block_1_0",
+      "target": "features_4_block_1_1",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "features_4_block_1_1",
+      "target": "features_4_block_1_2",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "features_4_block_1_2",
+      "target": "features_4_block_2_avgpool",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "features_4_block_2_avgpool",
+      "target": "features_4_block_2_fc1",
+      "tensor_size_bytes": 384
+    },
+    {
+      "source": "features_4_block_2_fc1",
+      "target": "features_4_block_2_activation",
+      "tensor_size_bytes": 96
+    },
+    {
+      "source": "features_4_block_2_activation",
+      "target": "features_4_block_2_fc2",
+      "tensor_size_bytes": 96
+    },
+    {
+      "source": "features_4_block_2_fc2",
+      "target": "features_4_block_2_scale_activation",
+      "tensor_size_bytes": 384
+    },
+    {
+      "source": "features_4_block_2_scale_activation",
+      "target": "mul_1",
+      "tensor_size_bytes": 384
+    },
+    {
+      "source": "features_4_block_1_2",
+      "target": "mul_1",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "mul_1",
+      "target": "features_4_block_3_0",
+      "tensor_size_bytes": 75264
+    },
+    {
+      "source": "features_4_block_3_0",
+      "target": "features_4_block_3_1",
+      "tensor_size_bytes": 31360
+    },
+    {
+      "source": "features_4_block_3_1",
+      "target": "features_5_block_0_0",
+      "tensor_size_bytes": 31360
+    },
+    {
+      "source": "features_5_block_0_0",
+      "target": "features_5_block_0_1",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_5_block_0_1",
+      "target": "features_5_block_0_2",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_5_block_0_2",
+      "target": "features_5_block_1_0",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_5_block_1_0",
+      "target": "features_5_block_1_1",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_5_block_1_1",
+      "target": "features_5_block_1_2",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_5_block_1_2",
+      "target": "features_5_block_2_avgpool",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_5_block_2_avgpool",
+      "target": "features_5_block_2_fc1",
+      "tensor_size_bytes": 960
+    },
+    {
+      "source": "features_5_block_2_fc1",
+      "target": "features_5_block_2_activation",
+      "tensor_size_bytes": 256
+    },
+    {
+      "source": "features_5_block_2_activation",
+      "target": "features_5_block_2_fc2",
+      "tensor_size_bytes": 256
+    },
+    {
+      "source": "features_5_block_2_fc2",
+      "target": "features_5_block_2_scale_activation",
+      "tensor_size_bytes": 960
+    },
+    {
+      "source": "features_5_block_2_scale_activation",
+      "target": "mul_2",
+      "tensor_size_bytes": 960
+    },
+    {
+      "source": "features_5_block_1_2",
+      "target": "mul_2",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "mul_2",
+      "target": "features_5_block_3_0",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_5_block_3_0",
+      "target": "features_5_block_3_1",
+      "tensor_size_bytes": 31360
+    },
+    {
+      "source": "features_5_block_3_1",
+      "target": "add_1",
+      "tensor_size_bytes": 31360
+    },
+    {
+      "source": "features_4_block_3_1",
+      "target": "add_1",
+      "tensor_size_bytes": 31360
+    },
+    {
+      "source": "add_1",
+      "target": "features_6_block_0_0",
+      "tensor_size_bytes": 31360
+    },
+    {
+      "source": "features_6_block_0_0",
+      "target": "features_6_block_0_1",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_6_block_0_1",
+      "target": "features_6_block_0_2",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_6_block_0_2",
+      "target": "features_6_block_1_0",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_6_block_1_0",
+      "target": "features_6_block_1_1",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_6_block_1_1",
+      "target": "features_6_block_1_2",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_6_block_1_2",
+      "target": "features_6_block_2_avgpool",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_6_block_2_avgpool",
+      "target": "features_6_block_2_fc1",
+      "tensor_size_bytes": 960
+    },
+    {
+      "source": "features_6_block_2_fc1",
+      "target": "features_6_block_2_activation",
+      "tensor_size_bytes": 256
+    },
+    {
+      "source": "features_6_block_2_activation",
+      "target": "features_6_block_2_fc2",
+      "tensor_size_bytes": 256
+    },
+    {
+      "source": "features_6_block_2_fc2",
+      "target": "features_6_block_2_scale_activation",
+      "tensor_size_bytes": 960
+    },
+    {
+      "source": "features_6_block_2_scale_activation",
+      "target": "mul_3",
+      "tensor_size_bytes": 960
+    },
+    {
+      "source": "features_6_block_1_2",
+      "target": "mul_3",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "mul_3",
+      "target": "features_6_block_3_0",
+      "tensor_size_bytes": 188160
+    },
+    {
+      "source": "features_6_block_3_0",
+      "target": "features_6_block_3_1",
+      "tensor_size_bytes": 31360
+    },
+    {
+      "source": "features_6_block_3_1",
+      "target": "add_2",
+      "tensor_size_bytes": 31360
+    },
+    {
+      "source": "add_1",
+      "target": "add_2",
+      "tensor_size_bytes": 31360
+    },
+    {
+      "source": "add_2",
+      "target": "features_7_block_0_0",
+      "tensor_size_bytes": 31360
+    },
+    {
+      "source": "features_7_block_0_0",
+      "target": "features_7_block_0_1",
+      "tensor_size_bytes": 94080
+    },
+    {
+      "source": "features_7_block_0_1",
+      "target": "features_7_block_0_2",
+      "tensor_size_bytes": 94080
+    },
+    {
+      "source": "features_7_block_0_2",
+      "target": "features_7_block_1_0",
+      "tensor_size_bytes": 94080
+    },
+    {
+      "source": "features_7_block_1_0",
+      "target": "features_7_block_1_1",
+      "tensor_size_bytes": 94080
+    },
+    {
+      "source": "features_7_block_1_1",
+      "target": "features_7_block_1_2",
+      "tensor_size_bytes": 94080
+    },
+    {
+      "source": "features_7_block_1_2",
+      "target": "features_7_block_2_avgpool",
+      "tensor_size_bytes": 94080
+    },
+    {
+      "source": "features_7_block_2_avgpool",
+      "target": "features_7_block_2_fc1",
+      "tensor_size_bytes": 480
+    },
+    {
+      "source": "features_7_block_2_fc1",
+      "target": "features_7_block_2_activation",
+      "tensor_size_bytes": 128
+    },
+    {
+      "source": "features_7_block_2_activation",
+      "target": "features_7_block_2_fc2",
+      "tensor_size_bytes": 128
+    },
+    {
+      "source": "features_7_block_2_fc2",
+      "target": "features_7_block_2_scale_activation",
+      "tensor_size_bytes": 480
+    },
+    {
+      "source": "features_7_block_2_scale_activation",
+      "target": "mul_4",
+      "tensor_size_bytes": 480
+    },
+    {
+      "source": "features_7_block_1_2",
+      "target": "mul_4",
+      "tensor_size_bytes": 94080
+    },
+    {
+      "source": "mul_4",
+      "target": "features_7_block_3_0",
+      "tensor_size_bytes": 94080
+    },
+    {
+      "source": "features_7_block_3_0",
+      "target": "features_7_block_3_1",
+      "tensor_size_bytes": 37632
+    },
+    {
+      "source": "features_7_block_3_1",
+      "target": "features_8_block_0_0",
+      "tensor_size_bytes": 37632
+    },
+    {
+      "source": "features_8_block_0_0",
+      "target": "features_8_block_0_1",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_8_block_0_1",
+      "target": "features_8_block_0_2",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_8_block_0_2",
+      "target": "features_8_block_1_0",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_8_block_1_0",
+      "target": "features_8_block_1_1",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_8_block_1_1",
+      "target": "features_8_block_1_2",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_8_block_1_2",
+      "target": "features_8_block_2_avgpool",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_8_block_2_avgpool",
+      "target": "features_8_block_2_fc1",
+      "tensor_size_bytes": 576
+    },
+    {
+      "source": "features_8_block_2_fc1",
+      "target": "features_8_block_2_activation",
+      "tensor_size_bytes": 160
+    },
+    {
+      "source": "features_8_block_2_activation",
+      "target": "features_8_block_2_fc2",
+      "tensor_size_bytes": 160
+    },
+    {
+      "source": "features_8_block_2_fc2",
+      "target": "features_8_block_2_scale_activation",
+      "tensor_size_bytes": 576
+    },
+    {
+      "source": "features_8_block_2_scale_activation",
+      "target": "mul_5",
+      "tensor_size_bytes": 576
+    },
+    {
+      "source": "features_8_block_1_2",
+      "target": "mul_5",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "mul_5",
+      "target": "features_8_block_3_0",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_8_block_3_0",
+      "target": "features_8_block_3_1",
+      "tensor_size_bytes": 37632
+    },
+    {
+      "source": "features_8_block_3_1",
+      "target": "add_3",
+      "tensor_size_bytes": 37632
+    },
+    {
+      "source": "features_7_block_3_1",
+      "target": "add_3",
+      "tensor_size_bytes": 37632
+    },
+    {
+      "source": "add_3",
+      "target": "features_9_block_0_0",
+      "tensor_size_bytes": 37632
+    },
+    {
+      "source": "features_9_block_0_0",
+      "target": "features_9_block_0_1",
+      "tensor_size_bytes": 225792
+    },
+    {
+      "source": "features_9_block_0_1",
+      "target": "features_9_block_0_2",
+      "tensor_size_bytes": 225792
+    },
+    {
+      "source": "features_9_block_0_2",
+      "target": "features_9_block_1_0",
+      "tensor_size_bytes": 225792
+    },
+    {
+      "source": "features_9_block_1_0",
+      "target": "features_9_block_1_1",
+      "tensor_size_bytes": 56448
+    },
+    {
+      "source": "features_9_block_1_1",
+      "target": "features_9_block_1_2",
+      "tensor_size_bytes": 56448
+    },
+    {
+      "source": "features_9_block_1_2",
+      "target": "features_9_block_2_avgpool",
+      "tensor_size_bytes": 56448
+    },
+    {
+      "source": "features_9_block_2_avgpool",
+      "target": "features_9_block_2_fc1",
+      "tensor_size_bytes": 1152
+    },
+    {
+      "source": "features_9_block_2_fc1",
+      "target": "features_9_block_2_activation",
+      "tensor_size_bytes": 288
+    },
+    {
+      "source": "features_9_block_2_activation",
+      "target": "features_9_block_2_fc2",
+      "tensor_size_bytes": 288
+    },
+    {
+      "source": "features_9_block_2_fc2",
+      "target": "features_9_block_2_scale_activation",
+      "tensor_size_bytes": 1152
+    },
+    {
+      "source": "features_9_block_2_scale_activation",
+      "target": "mul_6",
+      "tensor_size_bytes": 1152
+    },
+    {
+      "source": "features_9_block_1_2",
+      "target": "mul_6",
+      "tensor_size_bytes": 56448
+    },
+    {
+      "source": "mul_6",
+      "target": "features_9_block_3_0",
+      "tensor_size_bytes": 56448
+    },
+    {
+      "source": "features_9_block_3_0",
+      "target": "features_9_block_3_1",
+      "tensor_size_bytes": 18816
+    },
+    {
+      "source": "features_9_block_3_1",
+      "target": "features_10_block_0_0",
+      "tensor_size_bytes": 18816
+    },
+    {
+      "source": "features_10_block_0_0",
+      "target": "features_10_block_0_1",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_10_block_0_1",
+      "target": "features_10_block_0_2",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_10_block_0_2",
+      "target": "features_10_block_1_0",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_10_block_1_0",
+      "target": "features_10_block_1_1",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_10_block_1_1",
+      "target": "features_10_block_1_2",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_10_block_1_2",
+      "target": "features_10_block_2_avgpool",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_10_block_2_avgpool",
+      "target": "features_10_block_2_fc1",
+      "tensor_size_bytes": 2304
+    },
+    {
+      "source": "features_10_block_2_fc1",
+      "target": "features_10_block_2_activation",
+      "tensor_size_bytes": 576
+    },
+    {
+      "source": "features_10_block_2_activation",
+      "target": "features_10_block_2_fc2",
+      "tensor_size_bytes": 576
+    },
+    {
+      "source": "features_10_block_2_fc2",
+      "target": "features_10_block_2_scale_activation",
+      "tensor_size_bytes": 2304
+    },
+    {
+      "source": "features_10_block_2_scale_activation",
+      "target": "mul_7",
+      "tensor_size_bytes": 2304
+    },
+    {
+      "source": "features_10_block_1_2",
+      "target": "mul_7",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "mul_7",
+      "target": "features_10_block_3_0",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_10_block_3_0",
+      "target": "features_10_block_3_1",
+      "tensor_size_bytes": 18816
+    },
+    {
+      "source": "features_10_block_3_1",
+      "target": "add_4",
+      "tensor_size_bytes": 18816
+    },
+    {
+      "source": "features_9_block_3_1",
+      "target": "add_4",
+      "tensor_size_bytes": 18816
+    },
+    {
+      "source": "add_4",
+      "target": "features_11_block_0_0",
+      "tensor_size_bytes": 18816
+    },
+    {
+      "source": "features_11_block_0_0",
+      "target": "features_11_block_0_1",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_11_block_0_1",
+      "target": "features_11_block_0_2",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_11_block_0_2",
+      "target": "features_11_block_1_0",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_11_block_1_0",
+      "target": "features_11_block_1_1",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_11_block_1_1",
+      "target": "features_11_block_1_2",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_11_block_1_2",
+      "target": "features_11_block_2_avgpool",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_11_block_2_avgpool",
+      "target": "features_11_block_2_fc1",
+      "tensor_size_bytes": 2304
+    },
+    {
+      "source": "features_11_block_2_fc1",
+      "target": "features_11_block_2_activation",
+      "tensor_size_bytes": 576
+    },
+    {
+      "source": "features_11_block_2_activation",
+      "target": "features_11_block_2_fc2",
+      "tensor_size_bytes": 576
+    },
+    {
+      "source": "features_11_block_2_fc2",
+      "target": "features_11_block_2_scale_activation",
+      "tensor_size_bytes": 2304
+    },
+    {
+      "source": "features_11_block_2_scale_activation",
+      "target": "mul_8",
+      "tensor_size_bytes": 2304
+    },
+    {
+      "source": "features_11_block_1_2",
+      "target": "mul_8",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "mul_8",
+      "target": "features_11_block_3_0",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_11_block_3_0",
+      "target": "features_11_block_3_1",
+      "tensor_size_bytes": 18816
+    },
+    {
+      "source": "features_11_block_3_1",
+      "target": "add_5",
+      "tensor_size_bytes": 18816
+    },
+    {
+      "source": "add_4",
+      "target": "add_5",
+      "tensor_size_bytes": 18816
+    },
+    {
+      "source": "add_5",
+      "target": "features_12_0",
+      "tensor_size_bytes": 18816
+    },
+    {
+      "source": "features_12_0",
+      "target": "features_12_1",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_12_1",
+      "target": "features_12_2",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "features_12_2",
+      "target": "avgpool",
+      "tensor_size_bytes": 112896
+    },
+    {
+      "source": "avgpool",
+      "target": "flatten",
+      "tensor_size_bytes": 2304
+    },
+    {
+      "source": "flatten",
+      "target": "classifier_0",
+      "tensor_size_bytes": 2304
+    },
+    {
+      "source": "classifier_0",
+      "target": "classifier_1",
+      "tensor_size_bytes": 4096
+    },
+    {
+      "source": "classifier_1",
+      "target": "classifier_2",
+      "tensor_size_bytes": 4096
+    },
+    {
+      "source": "classifier_2",
+      "target": "classifier_3",
+      "tensor_size_bytes": 4096
+    },
+    {
+      "source": "classifier_3",
+      "target": "output",
+      "tensor_size_bytes": 4000
+    }
+  ]
+}

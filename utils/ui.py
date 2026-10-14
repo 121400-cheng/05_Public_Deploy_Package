@@ -26,4 +26,4 @@ def source_note(scene: str, case_id: str) -> None:
 
 def footer() -> None:
     st.divider()
-    st.caption("Demo V1.7 ｜ 已验证结果展示")
+    st.caption("Demo V3.0 ｜ 已验证结果展示与真实视觉分支验证")

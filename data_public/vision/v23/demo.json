@@ -1,0 +1,1231 @@
+{
+  "status": "TECHNICAL READY",
+  "mobile": {
+    "model": "MobileNetV3-Small",
+    "compute_nodes": 157,
+    "P_avg": 1.0,
+    "max_ready": 1
+  },
+  "googlenet": {
+    "model": "GoogLeNet",
+    "compute_nodes": 197,
+    "P_avg": 1.2357401076547694,
+    "max_ready": 4
+  },
+  "inception": {
+    "metadata": {
+      "block": "inception3a",
+      "source_file": "02_graph/googlenet_graph.json",
+      "source_sha256": "469A6603E81217C6F9558395C7E806858D7D324C14A0C29E5354B697A4559F69",
+      "selection_rule": "Earliest FX block meeting complete four-branch/common-input/real-cat constraints, selected before scheduling",
+      "upstream_input_node": "maxpool2",
+      "join_node": "cat",
+      "input_shape": [
+        1,
+        192,
+        28,
+        28
+      ],
+      "output_shape": [
+        1,
+        256,
+        28,
+        28
+      ],
+      "real_compute_nodes": 20,
+      "real_nodes_including_upstream_boundary": 21,
+      "real_induced_edges": 23,
+      "branches": {
+        "branch1": [
+          "inception3a_branch1_conv",
+          "inception3a_branch1_bn",
+          "relu_3"
+        ],
+        "branch2": [
+          "inception3a_branch2_0_conv",
+          "inception3a_branch2_0_bn",
+          "relu_4",
+          "inception3a_branch2_1_conv",
+          "inception3a_branch2_1_bn",
+          "relu_5"
+        ],
+        "branch3": [
+          "inception3a_branch3_0_conv",
+          "inception3a_branch3_0_bn",
+          "relu_6",
+          "inception3a_branch3_1_conv",
+          "inception3a_branch3_1_bn",
+          "relu_7"
+        ],
+        "branch4": [
+          "inception3a_branch4_0",
+          "inception3a_branch4_1_conv",
+          "inception3a_branch4_1_bn",
+          "relu_8"
+        ]
+      }
+    },
+    "nodes": [
+      {
+        "node_id": 11,
+        "node_name": "maxpool2",
+        "op_type": "call_module",
+        "target": "maxpool2",
+        "module_type": "MaxPool2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            192,
+            56,
+            56
+          ]
+        ],
+        "output_shape": [
+          1,
+          192,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 0,
+        "static_data_bytes": 0,
+        "activation_elements": 150528,
+        "activation_bytes": 602112,
+        "predecessors": [
+          "relu_2"
+        ],
+        "successors": [
+          "inception3a_branch1_conv",
+          "inception3a_branch2_0_conv",
+          "inception3a_branch3_0_conv",
+          "inception3a_branch4_0"
+        ],
+        "proxy_compute_cost": 150528,
+        "normalized_compute_cost": 147,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 12,
+        "node_name": "inception3a_branch1_conv",
+        "op_type": "call_module",
+        "target": "inception3a.branch1.conv",
+        "module_type": "Conv2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            192,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          64,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 12288,
+        "static_data_bytes": 49152,
+        "activation_elements": 50176,
+        "activation_bytes": 200704,
+        "predecessors": [
+          "maxpool2"
+        ],
+        "successors": [
+          "inception3a_branch1_bn"
+        ],
+        "proxy_compute_cost": 9633792,
+        "normalized_compute_cost": 9408,
+        "proxy_rule": "Conv MACs"
+      },
+      {
+        "node_id": 13,
+        "node_name": "inception3a_branch1_bn",
+        "op_type": "call_module",
+        "target": "inception3a.branch1.bn",
+        "module_type": "BatchNorm2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            64,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          64,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 128,
+        "static_data_bytes": 1032,
+        "activation_elements": 50176,
+        "activation_bytes": 200704,
+        "predecessors": [
+          "inception3a_branch1_conv"
+        ],
+        "successors": [
+          "relu_3"
+        ],
+        "proxy_compute_cost": 50176,
+        "normalized_compute_cost": 49,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 14,
+        "node_name": "relu_3",
+        "op_type": "call_function",
+        "target": "relu",
+        "module_type": "relu",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            64,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          64,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 0,
+        "static_data_bytes": 0,
+        "activation_elements": 50176,
+        "activation_bytes": 200704,
+        "predecessors": [
+          "inception3a_branch1_bn"
+        ],
+        "successors": [
+          "cat"
+        ],
+        "proxy_compute_cost": 50176,
+        "normalized_compute_cost": 49,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 15,
+        "node_name": "inception3a_branch2_0_conv",
+        "op_type": "call_module",
+        "target": "inception3a.branch2.0.conv",
+        "module_type": "Conv2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            192,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          96,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 18432,
+        "static_data_bytes": 73728,
+        "activation_elements": 75264,
+        "activation_bytes": 301056,
+        "predecessors": [
+          "maxpool2"
+        ],
+        "successors": [
+          "inception3a_branch2_0_bn"
+        ],
+        "proxy_compute_cost": 14450688,
+        "normalized_compute_cost": 14112,
+        "proxy_rule": "Conv MACs"
+      },
+      {
+        "node_id": 16,
+        "node_name": "inception3a_branch2_0_bn",
+        "op_type": "call_module",
+        "target": "inception3a.branch2.0.bn",
+        "module_type": "BatchNorm2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            96,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          96,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 192,
+        "static_data_bytes": 1544,
+        "activation_elements": 75264,
+        "activation_bytes": 301056,
+        "predecessors": [
+          "inception3a_branch2_0_conv"
+        ],
+        "successors": [
+          "relu_4"
+        ],
+        "proxy_compute_cost": 75264,
+        "normalized_compute_cost": 74,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 17,
+        "node_name": "relu_4",
+        "op_type": "call_function",
+        "target": "relu",
+        "module_type": "relu",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            96,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          96,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 0,
+        "static_data_bytes": 0,
+        "activation_elements": 75264,
+        "activation_bytes": 301056,
+        "predecessors": [
+          "inception3a_branch2_0_bn"
+        ],
+        "successors": [
+          "inception3a_branch2_1_conv"
+        ],
+        "proxy_compute_cost": 75264,
+        "normalized_compute_cost": 74,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 18,
+        "node_name": "inception3a_branch2_1_conv",
+        "op_type": "call_module",
+        "target": "inception3a.branch2.1.conv",
+        "module_type": "Conv2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            96,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          128,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 110592,
+        "static_data_bytes": 442368,
+        "activation_elements": 100352,
+        "activation_bytes": 401408,
+        "predecessors": [
+          "relu_4"
+        ],
+        "successors": [
+          "inception3a_branch2_1_bn"
+        ],
+        "proxy_compute_cost": 86704128,
+        "normalized_compute_cost": 84672,
+        "proxy_rule": "Conv MACs"
+      },
+      {
+        "node_id": 19,
+        "node_name": "inception3a_branch2_1_bn",
+        "op_type": "call_module",
+        "target": "inception3a.branch2.1.bn",
+        "module_type": "BatchNorm2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            128,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          128,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 256,
+        "static_data_bytes": 2056,
+        "activation_elements": 100352,
+        "activation_bytes": 401408,
+        "predecessors": [
+          "inception3a_branch2_1_conv"
+        ],
+        "successors": [
+          "relu_5"
+        ],
+        "proxy_compute_cost": 100352,
+        "normalized_compute_cost": 98,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 20,
+        "node_name": "relu_5",
+        "op_type": "call_function",
+        "target": "relu",
+        "module_type": "relu",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            128,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          128,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 0,
+        "static_data_bytes": 0,
+        "activation_elements": 100352,
+        "activation_bytes": 401408,
+        "predecessors": [
+          "inception3a_branch2_1_bn"
+        ],
+        "successors": [
+          "cat"
+        ],
+        "proxy_compute_cost": 100352,
+        "normalized_compute_cost": 98,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 21,
+        "node_name": "inception3a_branch3_0_conv",
+        "op_type": "call_module",
+        "target": "inception3a.branch3.0.conv",
+        "module_type": "Conv2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            192,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          16,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 3072,
+        "static_data_bytes": 12288,
+        "activation_elements": 12544,
+        "activation_bytes": 50176,
+        "predecessors": [
+          "maxpool2"
+        ],
+        "successors": [
+          "inception3a_branch3_0_bn"
+        ],
+        "proxy_compute_cost": 2408448,
+        "normalized_compute_cost": 2352,
+        "proxy_rule": "Conv MACs"
+      },
+      {
+        "node_id": 22,
+        "node_name": "inception3a_branch3_0_bn",
+        "op_type": "call_module",
+        "target": "inception3a.branch3.0.bn",
+        "module_type": "BatchNorm2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            16,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          16,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 32,
+        "static_data_bytes": 264,
+        "activation_elements": 12544,
+        "activation_bytes": 50176,
+        "predecessors": [
+          "inception3a_branch3_0_conv"
+        ],
+        "successors": [
+          "relu_6"
+        ],
+        "proxy_compute_cost": 12544,
+        "normalized_compute_cost": 13,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 23,
+        "node_name": "relu_6",
+        "op_type": "call_function",
+        "target": "relu",
+        "module_type": "relu",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            16,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          16,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 0,
+        "static_data_bytes": 0,
+        "activation_elements": 12544,
+        "activation_bytes": 50176,
+        "predecessors": [
+          "inception3a_branch3_0_bn"
+        ],
+        "successors": [
+          "inception3a_branch3_1_conv"
+        ],
+        "proxy_compute_cost": 12544,
+        "normalized_compute_cost": 13,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 24,
+        "node_name": "inception3a_branch3_1_conv",
+        "op_type": "call_module",
+        "target": "inception3a.branch3.1.conv",
+        "module_type": "Conv2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            16,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          32,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 4608,
+        "static_data_bytes": 18432,
+        "activation_elements": 25088,
+        "activation_bytes": 100352,
+        "predecessors": [
+          "relu_6"
+        ],
+        "successors": [
+          "inception3a_branch3_1_bn"
+        ],
+        "proxy_compute_cost": 3612672,
+        "normalized_compute_cost": 3528,
+        "proxy_rule": "Conv MACs"
+      },
+      {
+        "node_id": 25,
+        "node_name": "inception3a_branch3_1_bn",
+        "op_type": "call_module",
+        "target": "inception3a.branch3.1.bn",
+        "module_type": "BatchNorm2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            32,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          32,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 64,
+        "static_data_bytes": 520,
+        "activation_elements": 25088,
+        "activation_bytes": 100352,
+        "predecessors": [
+          "inception3a_branch3_1_conv"
+        ],
+        "successors": [
+          "relu_7"
+        ],
+        "proxy_compute_cost": 25088,
+        "normalized_compute_cost": 25,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 26,
+        "node_name": "relu_7",
+        "op_type": "call_function",
+        "target": "relu",
+        "module_type": "relu",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            32,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          32,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 0,
+        "static_data_bytes": 0,
+        "activation_elements": 25088,
+        "activation_bytes": 100352,
+        "predecessors": [
+          "inception3a_branch3_1_bn"
+        ],
+        "successors": [
+          "cat"
+        ],
+        "proxy_compute_cost": 25088,
+        "normalized_compute_cost": 25,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 27,
+        "node_name": "inception3a_branch4_0",
+        "op_type": "call_module",
+        "target": "inception3a.branch4.0",
+        "module_type": "MaxPool2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            192,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          192,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 0,
+        "static_data_bytes": 0,
+        "activation_elements": 150528,
+        "activation_bytes": 602112,
+        "predecessors": [
+          "maxpool2"
+        ],
+        "successors": [
+          "inception3a_branch4_1_conv"
+        ],
+        "proxy_compute_cost": 150528,
+        "normalized_compute_cost": 147,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 28,
+        "node_name": "inception3a_branch4_1_conv",
+        "op_type": "call_module",
+        "target": "inception3a.branch4.1.conv",
+        "module_type": "Conv2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            192,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          32,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 6144,
+        "static_data_bytes": 24576,
+        "activation_elements": 25088,
+        "activation_bytes": 100352,
+        "predecessors": [
+          "inception3a_branch4_0"
+        ],
+        "successors": [
+          "inception3a_branch4_1_bn"
+        ],
+        "proxy_compute_cost": 4816896,
+        "normalized_compute_cost": 4704,
+        "proxy_rule": "Conv MACs"
+      },
+      {
+        "node_id": 29,
+        "node_name": "inception3a_branch4_1_bn",
+        "op_type": "call_module",
+        "target": "inception3a.branch4.1.bn",
+        "module_type": "BatchNorm2d",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            32,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          32,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 64,
+        "static_data_bytes": 520,
+        "activation_elements": 25088,
+        "activation_bytes": 100352,
+        "predecessors": [
+          "inception3a_branch4_1_conv"
+        ],
+        "successors": [
+          "relu_8"
+        ],
+        "proxy_compute_cost": 25088,
+        "normalized_compute_cost": 25,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 30,
+        "node_name": "relu_8",
+        "op_type": "call_function",
+        "target": "relu",
+        "module_type": "relu",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            32,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          32,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 0,
+        "static_data_bytes": 0,
+        "activation_elements": 25088,
+        "activation_bytes": 100352,
+        "predecessors": [
+          "inception3a_branch4_1_bn"
+        ],
+        "successors": [
+          "cat"
+        ],
+        "proxy_compute_cost": 25088,
+        "normalized_compute_cost": 25,
+        "proxy_rule": "Elementwise output elements"
+      },
+      {
+        "node_id": 31,
+        "node_name": "cat",
+        "op_type": "call_function",
+        "target": "cat",
+        "module_type": "cat",
+        "classification": "compute",
+        "input_shape": [
+          [
+            1,
+            64,
+            28,
+            28
+          ],
+          [
+            1,
+            128,
+            28,
+            28
+          ],
+          [
+            1,
+            32,
+            28,
+            28
+          ],
+          [
+            1,
+            32,
+            28,
+            28
+          ]
+        ],
+        "output_shape": [
+          1,
+          256,
+          28,
+          28
+        ],
+        "dtype": "torch.float32",
+        "element_bytes": 4,
+        "parameter_count": 0,
+        "static_data_bytes": 0,
+        "activation_elements": 200704,
+        "activation_bytes": 802816,
+        "predecessors": [
+          "relu_3",
+          "relu_5",
+          "relu_7",
+          "relu_8"
+        ],
+        "successors": [
+          "inception3b_branch1_conv",
+          "inception3b_branch2_0_conv",
+          "inception3b_branch3_0_conv",
+          "inception3b_branch4_0"
+        ],
+        "proxy_compute_cost": 200704,
+        "normalized_compute_cost": 196,
+        "proxy_rule": "Elementwise output elements"
+      }
+    ],
+    "edges": [
+      {
+        "source": "maxpool2",
+        "target": "inception3a_branch1_conv",
+        "tensor_size_bytes": 602112
+      },
+      {
+        "source": "inception3a_branch1_conv",
+        "target": "inception3a_branch1_bn",
+        "tensor_size_bytes": 200704
+      },
+      {
+        "source": "inception3a_branch1_bn",
+        "target": "relu_3",
+        "tensor_size_bytes": 200704
+      },
+      {
+        "source": "maxpool2",
+        "target": "inception3a_branch2_0_conv",
+        "tensor_size_bytes": 602112
+      },
+      {
+        "source": "inception3a_branch2_0_conv",
+        "target": "inception3a_branch2_0_bn",
+        "tensor_size_bytes": 301056
+      },
+      {
+        "source": "inception3a_branch2_0_bn",
+        "target": "relu_4",
+        "tensor_size_bytes": 301056
+      },
+      {
+        "source": "relu_4",
+        "target": "inception3a_branch2_1_conv",
+        "tensor_size_bytes": 301056
+      },
+      {
+        "source": "inception3a_branch2_1_conv",
+        "target": "inception3a_branch2_1_bn",
+        "tensor_size_bytes": 401408
+      },
+      {
+        "source": "inception3a_branch2_1_bn",
+        "target": "relu_5",
+        "tensor_size_bytes": 401408
+      },
+      {
+        "source": "maxpool2",
+        "target": "inception3a_branch3_0_conv",
+        "tensor_size_bytes": 602112
+      },
+      {
+        "source": "inception3a_branch3_0_conv",
+        "target": "inception3a_branch3_0_bn",
+        "tensor_size_bytes": 50176
+      },
+      {
+        "source": "inception3a_branch3_0_bn",
+        "target": "relu_6",
+        "tensor_size_bytes": 50176
+      },
+      {
+        "source": "relu_6",
+        "target": "inception3a_branch3_1_conv",
+        "tensor_size_bytes": 50176
+      },
+      {
+        "source": "inception3a_branch3_1_conv",
+        "target": "inception3a_branch3_1_bn",
+        "tensor_size_bytes": 100352
+      },
+      {
+        "source": "inception3a_branch3_1_bn",
+        "target": "relu_7",
+        "tensor_size_bytes": 100352
+      },
+      {
+        "source": "maxpool2",
+        "target": "inception3a_branch4_0",
+        "tensor_size_bytes": 602112
+      },
+      {
+        "source": "inception3a_branch4_0",
+        "target": "inception3a_branch4_1_conv",
+        "tensor_size_bytes": 602112
+      },
+      {
+        "source": "inception3a_branch4_1_conv",
+        "target": "inception3a_branch4_1_bn",
+        "tensor_size_bytes": 100352
+      },
+      {
+        "source": "inception3a_branch4_1_bn",
+        "target": "relu_8",
+        "tensor_size_bytes": 100352
+      },
+      {
+        "source": "relu_3",
+        "target": "cat",
+        "tensor_size_bytes": 200704
+      },
+      {
+        "source": "relu_5",
+        "target": "cat",
+        "tensor_size_bytes": 401408
+      },
+      {
+        "source": "relu_7",
+        "target": "cat",
+        "tensor_size_bytes": 100352
+      },
+      {
+        "source": "relu_8",
+        "target": "cat",
+        "tensor_size_bytes": 100352
+      }
+    ],
+    "parallelism": {
+      "W": 119687,
+      "CP": 99324,
+      "P_avg": 1.2050159075349363,
+      "max_ready": 4,
+      "ready_ge2": 0.9,
+      "ready_ge4": 0.7,
+      "maximum_layer_width": 4,
+      "ready_ge3": 0.85,
+      "branch_workload": {
+        "branch1": 9506,
+        "branch2": 99128,
+        "branch3": 5956,
+        "branch4": 4901
+      },
+      "compute_nodes": 20,
+      "compute_edges": 19,
+      "block": "inception3a"
+    },
+    "results": [
+      {
+        "num_cores": 1,
+        "communication_factor": 1.0,
+        "baseline_makespan": 161315,
+        "optimized_makespan": 161315,
+        "improvement": 0.0,
+        "active_cores": 1,
+        "task_count_core0": 20,
+        "task_count_core1": null,
+        "task_count_core2": null,
+        "task_count_core3": null,
+        "copy_cost": 57282.0,
+        "wait_cost": 100.0,
+        "valid": true,
+        "solver": "Original initializer ONLY",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_1/k1/baseline/evaluation.json"
+      },
+      {
+        "num_cores": 2,
+        "communication_factor": 1.0,
+        "baseline_makespan": 169706,
+        "optimized_makespan": 144087,
+        "improvement": 15.096107385714117,
+        "active_cores": 1,
+        "task_count_core0": 20,
+        "task_count_core1": 0,
+        "task_count_core2": null,
+        "task_count_core3": null,
+        "copy_cost": 33864,
+        "wait_cost": 0,
+        "valid": true,
+        "solver": "Unchanged Teacher v2",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_1/k2/teacher/evaluation.json"
+      },
+      {
+        "num_cores": 4,
+        "communication_factor": 1.0,
+        "baseline_makespan": 213067,
+        "optimized_makespan": 154806,
+        "improvement": 27.343981001281286,
+        "active_cores": 2,
+        "task_count_core0": 15,
+        "task_count_core1": 5,
+        "task_count_core2": 0,
+        "task_count_core3": 0,
+        "copy_cost": 97072.0,
+        "wait_cost": 100.0,
+        "valid": true,
+        "solver": "Unchanged Teacher v2",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_1/k4/teacher/evaluation.json"
+      },
+      {
+        "num_cores": 1,
+        "communication_factor": 0.25,
+        "baseline_makespan": 130059,
+        "optimized_makespan": 130059,
+        "improvement": 0.0,
+        "active_cores": 1,
+        "task_count_core0": 20,
+        "task_count_core1": null,
+        "task_count_core2": null,
+        "task_count_core3": null,
+        "copy_cost": 14328.0,
+        "wait_cost": 25.0,
+        "valid": true,
+        "solver": "Original initializer ONLY",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_0.25/k1/baseline/evaluation.json"
+      },
+      {
+        "num_cores": 2,
+        "communication_factor": 0.25,
+        "baseline_makespan": 132085,
+        "optimized_makespan": 113224,
+        "improvement": 14.279441268879888,
+        "active_cores": 2,
+        "task_count_core0": 13,
+        "task_count_core1": 7,
+        "task_count_core2": null,
+        "task_count_core3": null,
+        "copy_cost": 23574.0,
+        "wait_cost": 25.0,
+        "valid": true,
+        "solver": "Unchanged Teacher v2",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_0.25/k2/teacher/evaluation.json"
+      },
+      {
+        "num_cores": 4,
+        "communication_factor": 0.25,
+        "baseline_makespan": 127653,
+        "optimized_makespan": 113224,
+        "improvement": 11.303298786554175,
+        "active_cores": 2,
+        "task_count_core0": 13,
+        "task_count_core1": 7,
+        "task_count_core2": 0,
+        "task_count_core3": 0,
+        "copy_cost": 23574.0,
+        "wait_cost": 25.0,
+        "valid": true,
+        "solver": "Unchanged Teacher v2",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_0.25/k4/teacher/evaluation.json"
+      },
+      {
+        "num_cores": 1,
+        "communication_factor": 0.5,
+        "baseline_makespan": 140478,
+        "optimized_makespan": 140478,
+        "improvement": 0.0,
+        "active_cores": 1,
+        "task_count_core0": 20,
+        "task_count_core1": null,
+        "task_count_core2": null,
+        "task_count_core3": null,
+        "copy_cost": 28646.0,
+        "wait_cost": 50.0,
+        "valid": true,
+        "solver": "Original initializer ONLY",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_0.5/k1/baseline/evaluation.json"
+      },
+      {
+        "num_cores": 2,
+        "communication_factor": 0.5,
+        "baseline_makespan": 144624,
+        "optimized_makespan": 131765,
+        "improvement": 8.891332005752849,
+        "active_cores": 1,
+        "task_count_core0": 20,
+        "task_count_core1": 0,
+        "task_count_core2": null,
+        "task_count_core3": null,
+        "copy_cost": 16936,
+        "wait_cost": 0,
+        "valid": true,
+        "solver": "Unchanged Teacher v2",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_0.5/k2/teacher/evaluation.json"
+      },
+      {
+        "num_cores": 4,
+        "communication_factor": 0.5,
+        "baseline_makespan": 156008,
+        "optimized_makespan": 126997,
+        "improvement": 18.595841238910825,
+        "active_cores": 2,
+        "task_count_core0": 15,
+        "task_count_core1": 5,
+        "task_count_core2": 0,
+        "task_count_core3": 0,
+        "copy_cost": 46820.0,
+        "wait_cost": 50.0,
+        "valid": true,
+        "solver": "Unchanged Teacher v2",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_0.5/k4/teacher/evaluation.json"
+      },
+      {
+        "num_cores": 1,
+        "communication_factor": 2.0,
+        "baseline_makespan": 203527,
+        "optimized_makespan": 203527,
+        "improvement": 0.0,
+        "active_cores": 1,
+        "task_count_core0": 20,
+        "task_count_core1": null,
+        "task_count_core2": null,
+        "task_count_core3": null,
+        "copy_cost": 114554.0,
+        "wait_cost": 200.0,
+        "valid": true,
+        "solver": "Original initializer ONLY",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_2/k1/baseline/evaluation.json"
+      },
+      {
+        "num_cores": 2,
+        "communication_factor": 2.0,
+        "baseline_makespan": 227591,
+        "optimized_makespan": 169269,
+        "improvement": 25.625793638588522,
+        "active_cores": 1,
+        "task_count_core0": 20,
+        "task_count_core1": 0,
+        "task_count_core2": null,
+        "task_count_core3": null,
+        "copy_cost": 67721,
+        "wait_cost": 0,
+        "valid": true,
+        "solver": "Unchanged Teacher v2",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_2/k2/teacher/evaluation.json"
+      },
+      {
+        "num_cores": 4,
+        "communication_factor": 2.0,
+        "baseline_makespan": 327193,
+        "optimized_makespan": 169269,
+        "improvement": 48.2663137658813,
+        "active_cores": 1,
+        "task_count_core0": 20,
+        "task_count_core1": 0,
+        "task_count_core2": 0,
+        "task_count_core3": 0,
+        "copy_cost": 67721,
+        "wait_cost": 0,
+        "valid": true,
+        "solver": "Unchanged Teacher v2",
+        "improvement_unit": "percent relative to same-core/factor initial",
+        "source": "05_results/v23/inception/factor_2/k4/teacher/evaluation.json"
+      }
+    ]
+  },
+  "units": "Abstract proxy cycles, not NPU/GPU measured time",
+  "scope": "Real branch subgraph only; not full-model multicore acceleration"
+}

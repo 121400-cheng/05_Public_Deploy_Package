@@ -1,0 +1,37 @@
+{
+  "version": "V2.0",
+  "overall_status": "PARTIAL PASS",
+  "generated_at": "2026-10-13T08:12:17.464900+00:00",
+  "files": [
+    {
+      "file": "graph.json",
+      "sha256": "A7196C40E8692B8E4B44778C71353A2A29BD74B75CAE6B65675D19DA15878737",
+      "source_relative": "02_graph/mobilenet_v3_small_graph.json",
+      "source_sha256": "29076FFD120CFCB1A5617069C89D3BF45726570907E192F02D91A51F8C7C9687"
+    },
+    {
+      "file": "result.json",
+      "sha256": "7712C04936A10971B0A8BCF30425B323DC55181A146A2ACC845A630A0B5D8EE1",
+      "source_relative": "05_results/mobilenet_multicore_result.json",
+      "source_sha256": "B945C879CF46FF95685AA845058842D83AC166153CDADAFCEC97213B63FD2335"
+    },
+    {
+      "file": "baseline_plan.json",
+      "sha256": "1BA4EFC81795449911CF7B0601A12518DA24973FCD86CB2032A12155E5E3130B",
+      "source_relative": "05_results/mobilenet_baseline_plan.json",
+      "source_sha256": "1BA4EFC81795449911CF7B0601A12518DA24973FCD86CB2032A12155E5E3130B"
+    },
+    {
+      "file": "optimized_plan.json",
+      "sha256": "4E1006210C4722EEC91311820F385ACDFE2588B3F68BBDA6C5D1A4A173907AC3",
+      "source_relative": "05_results/mobilenet_optimized_plan.json",
+      "source_sha256": "4E1006210C4722EEC91311820F385ACDFE2588B3F68BBDA6C5D1A4A173907AC3"
+    },
+    {
+      "file": "resources.json",
+      "sha256": "84C24B1DFE98F528551F12A2D84804DDA756E5A088EF65366EF0B60B98C018D5",
+      "source_relative": "04_instances/resource_parameters.json",
+      "source_sha256": "84C24B1DFE98F528551F12A2D84804DDA756E5A088EF65366EF0B60B98C018D5"
+    }
+  ]
+}
